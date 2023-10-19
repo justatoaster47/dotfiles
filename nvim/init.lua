@@ -64,7 +64,7 @@ require('lazy').setup({
       },
 
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
+        --vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
 
         -- don't override the built-in and fugitive keymaps
         local gs = package.loaded.gitsigns
@@ -198,14 +198,18 @@ vim.keymap.set('n', 'ff', '<C-w>w', { noremap = true, silent = true }) --into/ou
 vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half page jumps
 vim.keymap.set('n', 'K', '<C-u>zz', { noremap = true, silent = true }) --half page jumps
 
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]], {desc = 'yank to clipboard'})
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex) --exit to umbrella directory
+vim.keymap.set('n', '<leader>d', vim.cmd.Ex, {desc = 'exit to [d]irectory'}) --exit to umbrella directory
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = '[U]ndoTree' }) --toggle undotree
-vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = 'yank to clipboard'})
-vim.keymap.set("n", "<leader>p", '"+p', { desc = 'paste from clipboard' })
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]], {desc = '[y]ank to clipboard'})
+vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = '[Y]ank to clipboard'})
+vim.keymap.set("n", "<leader>v", '"+p', { desc = '[v] paste from clipboard' })
+vim.keymap.set("n", "<leader>p", '"0p', { desc = '[p]aste from last yank' })
+--vim.keymap.set("n", "<leader>d", '"_d', { desc = '[d]elete into the abyss' })
+
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = 'make executable'})
 vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').oldfiles, { desc = '[ ] Recent Files' })
-vim.keymap.set("n", "<leader>si", [[/<C-r><C-w>]], {desc = '[S]earch [I]nstance'})
+--vim.keymap.set("n", "<leader>si", [[/<C-r><C-w>]], {desc = '[S]earch [I]nstance'})
+--just use asterisk instead of search instance
 vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc = '[S]earch [R]eplace'})
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch [G]rep' })
@@ -223,8 +227,6 @@ vim.keymap.set('n', '<leader>gp', ':G push ',{ desc = '[G]it [P]ush' })
 vim.keymap.set('n', '<leader>gl', ':G log ',{ desc = '[G]it [L]og' })
 vim.keymap.set('n', '<leader>gs', ':G status',{ desc = '[G]it [S]tatus' })
 vim.keymap.set('n', '<leader>gh', ':G checkout',{ desc = '[G]it c[H]eckout'})
-
---add maps for split window navigation
 
 require('which-key').register {
   ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
@@ -289,7 +291,7 @@ require('mason-lspconfig').setup({
   ensure_installed={
     'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx',
     'javascript','typescript', 'vimdoc', 'vim', 'bash'
-  }
+  },
 })
 
 local lspconfig = require('lspconfig')
