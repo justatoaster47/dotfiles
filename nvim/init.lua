@@ -1,47 +1,40 @@
---[[
-
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-
-Kickstart.nvim is *not* a distribution.
-
-Kickstart.nvim is a template for your own configuration.
-  The goal is that you can read every line of code, top-to-bottom, understand
-  what your configuration is doing, and modify it to suit your needs.
-
-  Once you've done that, you should start exploring, configuring and tinkering to
-  explore Neovim!
-
-  If you don't know anything about Lua, I recommend taking some time to read through
-  a guide. One possible example:
-  - https://learnxinyminutes.com/docs/lua/
-
-
-  And then you can explore or search through `:help lua-guide`
-  - https://neovim.io/doc/user/lua-guide.html
-
-
-Kickstart Guide:
-
-I have left several `:help X` comments throughout the init.lua
-You should run that command and read that help section for more information.
-
-In addition, I have some `NOTE:` items throughout the file.
-These are for you, the reader to help understand what is happening. Feel free to delete
-them once you know what you're doing, but they should serve as a guide for when you
-are first encountering a few different constructs in your nvim config.
-
-I hope you enjoy your Neovim journey,
-- TJ
-
-P.S. You can delete this when you're done too. It's your config now :)
---]]
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+--Set leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+--Preferences
+vim.o.nu = true
+vim.o.relativenumber = true
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+vim.o.smartindent = true
+vim.o.wrap = false
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.undodir = os.getenv("HOME") .. "/Desktop/code/undodir" --set where you want undodir for 
+vim.o.undofile = true
+vim.o.hlsearch = false
+vim.o.incsearch = true
+vim.o.scrolloff = 8
+vim.o.mouse = 'a'
+vim.o.breakindent = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.wo.signcolumn = 'yes'
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
+vim.o.completeopt = 'menuone,noselect'
+vim.wo.number = true
+vim.o.smartindent = true
+
+--Keybind Removals below
+--Keybind Sets will be at EOF
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v'}, 'gn', '<Nop>', {silent = true})
+vim.keymap.set({ 'n', 'v'}, 'gn', '<Nop>', {silent = true})
+vim.keymap.set({ 'n', 'v'}, 'C-k', '<Nop>', {silent = true})
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -127,11 +120,12 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
+        vim.keymap.set('n', 'gh', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[G]it [H]unk' })
+
 
         -- don't override the built-in and fugitive keymaps
         local gs = package.loaded.gitsigns
-        vim.keymap.set({ 'n', 'v' }, ']c', function()
+        vim.keymap.set({ 'n', 'v' }, 'gn', function()
           if vim.wo.diff then
             return ']c'
           end
@@ -139,8 +133,8 @@ require('lazy').setup({
             gs.next_hunk()
           end)
           return '<Ignore>'
-        end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
-        vim.keymap.set({ 'n', 'v' }, '[c', function()
+        end, { expr = true, buffer = bufnr, desc = '[G]it [N]ext hunk' })
+        vim.keymap.set({ 'n', 'v' }, 'gl', function()
           if vim.wo.diff then
             return '[c'
           end
@@ -148,10 +142,17 @@ require('lazy').setup({
             gs.prev_hunk()
           end)
           return '<Ignore>'
-        end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
+        end, { expr = true, buffer = bufnr, desc = '[G]it [L]ast hunk' })
       end,
     },
   },
+
+  --{
+  --Copilot
+  -- Use ':Copilot setup' to init 
+  --'github/copilot.vim',
+  --lazy = false, 
+  --},
 
    {
     'sainnhe/gruvbox-material',
@@ -167,7 +168,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'gruvbox',
         component_separators = '|',
         section_separators = '',
       },
@@ -236,51 +237,48 @@ require('lazy').setup({
 -- NOTE: You can change these options as you wish!
 
 -- Set highlight on search
-vim.o.hlsearch = false
+--vim.o.hlsearch = false
 
 -- Make line numbers default
-vim.wo.number = true
+--vim.wo.number = true
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
+--vim.o.mouse = 'a'
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+--vim.o.clipboard = 'unnamedplus'
 
 -- Enable break indent
-vim.o.breakindent = true
+--vim.o.breakindent = true
 
 -- Save undo history
-vim.o.undofile = true
+--vim.o.undofile = true
 
 -- Case-insensitive searching UNLESS \C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+--vim.o.ignorecase = true
+--vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
+--vim.wo.signcolumn = 'yes'
 
 -- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+--vim.o.updatetime = 250
+--vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+--vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
+--vim.o.termguicolors = true
 
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -310,6 +308,7 @@ require('telescope').setup {
 pcall(require('telescope').load_extension, 'fzf')
 
 -- See `:help telescope.builtin`
+--[[
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
@@ -327,6 +326,7 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+]]
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -368,21 +368,26 @@ vim.defer_fn(function()
         enable = true,
         set_jumps = true, -- whether to set jumps in the jumplist
         goto_next_start = {
-          [']m'] = '@function.outer',
-          [']]'] = '@class.outer',
+          ['[f'] = '@function.outer',
+          ['[c'] = '@class.outer',
+          [']]'] = '@parameter.inner',
         },
-        goto_next_end = {
-          [']M'] = '@function.outer',
-          [']['] = '@class.outer',
+        --[[goto_next_end = {
+          ['[f'] = '@function.outer',
+          ['[c'] = '@class.outer',
         },
+        ]]--
         goto_previous_start = {
-          ['[m'] = '@function.outer',
-          ['[['] = '@class.outer',
+          [']f'] = '@function.outer',
+          [']c'] = '@class.outer',
+          ['[['] = '@parameter.inner',
         },
+        --[[
         goto_previous_end = {
-          ['[M'] = '@function.outer',
-          ['[]'] = '@class.outer',
+          [']f'] = '@function.outer',
+          [']c'] = '@class.outer',
         },
+        --]]
       },
       swap = {
         enable = true,
@@ -400,8 +405,24 @@ end, 0)
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open [D]iagnostic message' })
+vim.keymap.set('n', '<leader>l', vim.diagnostic.setloclist, { desc = 'Open diagnostics [L]ist' })
+
+
+
+
+
+
+
+
+
+
+
+--ive edited from the top down until here so far
+
+
+
+
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
@@ -432,7 +453,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   --nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  --nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -447,6 +468,9 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
 end
+
+
+--vim.api.nvim_set_keymap(‘i’, ‘<D><Cr>’, ‘copilot#Accept(“<CR>”)’, {expr=true, silent=true})
 
 -- document existing key chains
 --require('which-key').register {
@@ -534,16 +558,17 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    vim.keymap.set('n', 'C-k', '<Nop>', {silent = true}), --need to get rid of C-k default binding
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    --['<C-J>'] = cmp.mapping.scroll_docs(-4),
+    --['<C-K>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ['<D><Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_locally_jumpable() then
@@ -575,40 +600,12 @@ cmp.setup {
 
 --MY KEYBINDS 
 
-vim.o.nu = true
-vim.o.relativenumber = true
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
-vim.o.expandtab = true
-vim.o.smartindent = true
-vim.o.wrap = false
-vim.o.swapfile = false
-vim.o.backup = false
-vim.o.undodir = os.getenv("HOME") .. "/Desktop/code/undodir"
-vim.o.undofile = true
-vim.o.hlsearch = false
-vim.o.incsearch = true
-vim.o.scrolloff = 8
-vim.o.mouse = 'a'
-vim.o.breakindent = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.wo.signcolumn = 'yes'
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
-vim.o.completeopt = 'menuone,noselect'
-vim.wo.number = true
-
-
-
---vim.keymap.set('n', '<leader>w', ':wincmd w<CR>', {desc = ''})
---vim.keymap.set('n', '<leader>d', '<Esc>', {desc = ''})
-
-vim.keymap.set("n", "H", "B") --segment jumps
-vim.keymap.set('n', 'L', 'W') --segment jumps
-vim.keymap.set("n", "n", "nzzzv") --keeps next in the middle of the page
-vim.keymap.set("n", "N", "Nzzzv") --keeps next in the middgle of the page 
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set("n", "H", "_", {noremap = true, silent = true}) --start of line
+vim.keymap.set('n', 'L', '$', {noremap = true, silent = true}) --end of line
+vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
+vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
 vim.keymap.set('i', '<S-Tab>', '<<', { noremap = true, silent = true }) --shift tab works
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
@@ -617,7 +614,7 @@ vim.keymap.set('n', 'ff', '<C-w>w', { noremap = true, silent = true }) --into/ou
 vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half page jumps
 vim.keymap.set('n', 'K', '<C-u>zz', { noremap = true, silent = true }) --half page jumps
 
-vim.keymap.set('n', '<leader>d', vim.cmd.Ex, {desc = 'exit to [d]irectory'}) --exit to umbrella directory
+vim.keymap.set('n', '<leader>e', vim.cmd.Ex, {desc = 'exit to [e]explore'}) --exit to umbrella directory
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = '[U]ndoTree' }) --toggle undotree
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]], {desc = '[y]ank to clipboard'})
 vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = '[Y]ank to clipboard'})
@@ -631,6 +628,7 @@ vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').oldfiles, {
 --just use asterisk instead of search instance
 vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc = '[S]earch [R]eplace'})
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch [G]rep' })
 vim.keymap.set('n', '<leader>ss', require('telescope.builtin').grep_string, { desc = '[S]earch [S]tring' })
 vim.keymap.set('n', '<leader>sb', function()
@@ -646,6 +644,7 @@ vim.keymap.set('n', '<leader>gp', ':G push ',{ desc = '[G]it [P]ush' })
 vim.keymap.set('n', '<leader>gl', ':G log ',{ desc = '[G]it [L]og' })
 vim.keymap.set('n', '<leader>gs', ':G status',{ desc = '[G]it [S]tatus' })
 vim.keymap.set('n', '<leader>gh', ':G checkout',{ desc = '[G]it c[H]eckout'})
+
 
 
 
