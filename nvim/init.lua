@@ -461,7 +461,7 @@ vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half pa
 vim.keymap.set('n', 'K', '<C-u>zz', { noremap = true, silent = true }) --half page jumps
 
 vim.keymap.set('n', '<leader>e', vim.cmd.Ex, {desc = 'exit to [e]xplore'}) --exit to umbrella directory
---vim.keymap.set('n', '<leader>h', ':cd %:h<CR>', {noremap = true, silent = true, desc = 'Set path to current directory'}) --exit to umbrella directory
+vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {noremap = true, silent = true, desc = 'Set path to current directory'}) --exit to umbrella directory
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]], {desc = '[y]ank to clipboard'})
 vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = '[Y]ank to clipboard'})
 vim.keymap.set("n", "<leader>p", '"+p', { desc = '[p] paste from clipboard' })
