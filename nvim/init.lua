@@ -295,6 +295,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
+    file_ignore_patterns = {'.pdf', '.PNG', '.db', '.qm', '.jpg',
+      '.gif', '.numbers', '.key', '.mp3', '.rar', '.mov', '.HEIC',
+      '.h', '.cnf', '.nam', '.dylib', '.prl', '.wav', '.xtmpat',
+      '.at5p', '.pri', '.JPEG', '.mp4', '.zip', '.repeaks', '.RPP',
+      '.pak'
+    },
     mappings = {
       i = {
         ['<C-u>'] = false,
