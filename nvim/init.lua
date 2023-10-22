@@ -37,6 +37,8 @@ vim.keymap.set({ 'n', 'v'}, 'gn', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'C-k', '<Nop>', {silent = true})
 vim.keymap.set({ 'n'}, 'K', '<Nop>', {silent = true})
 vim.keymap.set({ 'n'}, 'H', '<Nop>', {silent = true})
+vim.keymap.set({ 'n', 'v'}, 's', '<Nop>', {silent = true})
+
 --vim.keymap.set({ 'n' }, '<gc>', '<Nop>', {silent = true})
 
 
@@ -61,6 +63,9 @@ require('lazy').setup({
 
   -- Undotree
   'mbbill/undotree',
+
+  --Editing enclosing characters
+  'tpope/vim-surround',
 
   -- Git related plugins
   'tpope/vim-fugitive',
@@ -236,11 +241,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('telescope').setup {
   defaults = {
     file_ignore_patterns = {
+      --[[
       '.PNG', '.db', '.qm', '.jpg', '.gif', '.numbers',
       '.key', '.mp3', '.rar', '.mov', '.HEIC',
       '.h', '.nam', '.dylib', '.prl', '.wav', '.xtmpat',
       '.at5p', '.pri', '.JPEG', '.mp4', '.zip', '.repeaks', '.RPP',
       '.pak', '.at3p', '.at2p',  '.at1p', '.so', '.iso',
+      ]]--
     },
     mappings = {
       i = {
@@ -461,7 +468,7 @@ vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half pa
 vim.keymap.set('n', 'K', '<C-u>zz', { noremap = true, silent = true }) --half page jumps
 
 vim.keymap.set('n', '<leader>e', vim.cmd.Ex, {desc = 'exit to [e]xplore'}) --exit to umbrella directory
-vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {noremap = true, silent = true, desc = 'Set path to current directory'}) --exit to umbrella directory
+vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {noremap = true, silent = true, desc = 'Set path to current directory'})
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]], {desc = '[y]ank to clipboard'})
 vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = '[Y]ank to clipboard'})
 vim.keymap.set("n", "<leader>p", '"+p', { desc = '[p] paste from clipboard' })
