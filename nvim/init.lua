@@ -29,7 +29,10 @@ vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
 vim.wo.number = true
 vim.o.smartindent = true
+vim.o.smarttab = true
 vim.o.autochdir = true
+vim.o.showcmd = true
+vim.o.title = true
 
 --Keybind Removals below
 --Keybind Sets will be at EOF
@@ -209,6 +212,9 @@ require('lazy').setup({
   --Editing enclosing characters
   'tpope/vim-surround',
 
+  --show vim marks 
+  'chentoast/marks.nvim',
+
   {
     'sainnhe/gruvbox-material',
     config = function()
@@ -371,6 +377,17 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
   },
+}
+
+require'marks'.setup {
+  default_mappings = true,
+  builtin_marks = {},
+  cyclic = true,
+  force_write_shada = false,
+  refresh_interval = 250,
+  sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
+  excluded_filetypes = {},
+  mappings = {}
 }
 
 --MY KEYBINDS 
