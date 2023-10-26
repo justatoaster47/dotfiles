@@ -347,8 +347,11 @@ require'marks'.setup {
 }
 
 --NAV KEYBINDS 
-vim.keymap.set({'n', 'v'}, "H", "_", {noremap = true, silent = true}) --start of line
-vim.keymap.set({'n', 'v'}, 'L', '$', {noremap = true, silent = true}) --end of line
+-- vim.keymap.set({'n', 'v'}, "H", "_", {noremap = true, silent = true}) --start of line
+-- vim.keymap.set({'n', 'v'}, 'L', '$', {noremap = true, silent = true}) --end of line
+vim.keymap.set({'n', 'v'}, "H", "9h", {noremap = true, silent = true}) --start of line
+vim.keymap.set({'n', 'v'}, 'L', '9l', {noremap = true, silent = true}) --end of line
+--consider doing block jumps with this instead
 vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
