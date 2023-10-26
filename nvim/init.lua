@@ -158,6 +158,18 @@ require('lazy').setup({
         component_separators = '|',
         section_separators = '',
       },
+      sections = {
+        lualine_a = {'mode'},
+        lualine_b = {},
+        lualine_c = {{'filename', path = 2}},
+        -- lualine_b = {'filename'}
+        --lualine_c = {'branch', 'diff', 'diagnostics'},
+        --lualine_x = {'encoding', 'fileformat', 'filetype'},
+        --lualine_y = {'progress'},
+        lualine_x = {'branch', 'diff', 'diagnostics'},
+        lualine_y = {'filetype'},
+        lualine_z = {'location'}
+      },
     },
   },
 
@@ -285,7 +297,6 @@ local on_attach = function(_, bufnr)
 
   nmap('<leader>r', vim.lsp.buf.rename, '[R]ename')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
@@ -379,6 +390,7 @@ cmp.setup {
   },
 }
 
+--Marks config for vim marks and bookmarks/psuedo harpoon
 require'marks'.setup {
   default_mappings = true,
   builtin_marks = {},
@@ -390,14 +402,11 @@ require'marks'.setup {
   mappings = {}
 }
 
---MY KEYBINDS 
 require('which-key').register {
-  -- ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  -- ['<leader>b'] = { name = '[B]uffer', _ = 'which_key_ignore' },
   --['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  --['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
 }
 
+--MY KEYBINDS 
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set("n", "H", "_", {noremap = true, silent = true}) --start of line
