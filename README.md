@@ -1,10 +1,13 @@
-Dependencies:
-Neovim 
-Git
-Tmux
-Ripgrep
-Fzf
+# Dependencies
+1. Neovim 
+2. Git
+3. Tmux
+4. Ripgrep
+5. Fzf
 
-Place nvim and tmux folders your ~/.config or equivalent folder.
+# Directory Locations
+Place ''nvim'' and ''tmux'' directories your ~/.config or equivalent.
 
-Also set up undodir folder for undotree, update location in init.lua
+Also create / update ''undodir'' directory for undotree save history.
+
+Make sure to update location in init.lua in keybinds section.
