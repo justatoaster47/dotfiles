@@ -45,11 +45,7 @@ vim.keymap.set({ 'n', 'v'}, 'ss', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'gn', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'gl', '<Nop>', {silent = true})
 
-
-
--- Install package manager
---    https://github.com/folke/lazy.nvim
---    `:help lazy.nvim.txt` for more info
+-- Package Manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -73,15 +69,23 @@ require('lazy').setup({
   'tpope/vim-sleuth',
 
   {
-    -- LSP Configuration & Plugins
+    -- LSP Configuration 
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
+      {
+        'williamboman/mason.nvim',
+        opts = {
+          --put your most used langagues below
+          ensure_installed = {
+            'lua-language-server',
+            'clangd',
+            'clang-format',
+          }
+        }
+      },
       'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
@@ -121,8 +125,7 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>g', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[g]it hunk' })
-
+        vim.keymap.set('n', 'gh', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[g]it [h]unk' })
 
         -- don't override the built-in and fugitive keymaps
         local gs = package.loaded.gitsigns
@@ -134,7 +137,7 @@ require('lazy').setup({
             gs.next_hunk()
           end)
           return '<Ignore>'
-        end, { expr = true, buffer = bufnr, desc = 'git next hunk' })
+        end, { expr = true, buffer = bufnr, desc = '[g]it [n]ext hunk' })
         vim.keymap.set({ 'n', 'v' }, 'gl', function()
           if vim.wo.diff then
             return '[c'
@@ -143,7 +146,7 @@ require('lazy').setup({
             gs.prev_hunk()
           end)
           return '<Ignore>'
-        end, { expr = true, buffer = bufnr, desc = 'git last hunk' })
+        end, { expr = true, buffer = bufnr, desc = '[g]it [l]ast hunk' })
       end,
     },
   },
@@ -151,7 +154,6 @@ require('lazy').setup({
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
     opts = {
       options = {
         icons_enabled = false,
@@ -163,10 +165,6 @@ require('lazy').setup({
         lualine_a = {'mode'},
         lualine_b = {},
         lualine_c = {{'filename', path = 2}},
-        -- lualine_b = {'filename'}
-        --lualine_c = {'branch', 'diff', 'diagnostics'},
-        --lualine_x = {'encoding', 'fileformat', 'filetype'},
-        --lualine_y = {'progress'},
         lualine_x = {'branch', 'diff', 'diagnostics'},
         lualine_y = {'filetype'},
         lualine_z = {'location'}
@@ -177,13 +175,11 @@ require('lazy').setup({
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
     main = 'ibl',
     opts = {},
   },
 
-  -- "gc" to comment visual regions/lines
+  -- keybind comments, gcc for lines gb for blocks (visual mode helps)
   { 'numToStr/Comment.nvim', opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
@@ -212,15 +208,16 @@ require('lazy').setup({
   },
 
 
-
   --My Additions
   -- Undotree
   'mbbill/undotree',
 
   --Editing enclosing characters
+  --in visual mode use S then the enclosing character ' " { [ (
+  --or use ys (motion like iw iW 5w t) t; etc) then enclosing character ' " { [ (
   'tpope/vim-surround',
 
-  --show vim marks 
+  --show vim marks, set bookmarks (marks with 0-9), access via '
   'chentoast/marks.nvim',
 
   {
@@ -228,17 +225,6 @@ require('lazy').setup({
     config = function()
       vim.cmd.colorscheme 'gruvbox-material'
     end,
-  },
-
-  {
-    'williamboman/mason.nvim',
-    opts = {
-      ensure_installed = {
-        'lua-language-server',
-        'clangd',
-        'clang-format',
-      }
-    }
   },
 
   {
@@ -250,7 +236,6 @@ require('lazy').setup({
 }, {})
 
 -- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
@@ -261,7 +246,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {},
 }
@@ -280,8 +264,6 @@ vim.defer_fn(function()
 end, 0)
 
 -- [[ Configure LSP ]]
--- mason-lspconfig requires that these setup functions are called in this order
--- before setting up the servers.
 require('mason').setup()
 require('mason-lspconfig').setup()
 
@@ -365,8 +347,8 @@ require'marks'.setup {
 }
 
 --NAV KEYBINDS 
-vim.keymap.set("n", "H", "_", {noremap = true, silent = true}) --start of line
-vim.keymap.set('n', 'L', '$', {noremap = true, silent = true}) --end of line
+vim.keymap.set({'n', 'v'}, "H", "_", {noremap = true, silent = true}) --start of line
+vim.keymap.set({'n', 'v'}, 'L', '$', {noremap = true, silent = true}) --end of line
 vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
@@ -378,7 +360,8 @@ vim.keymap.set('n', 'sh', '<C-w>h', { noremap = true, silent = true }) --nvim pa
 vim.keymap.set('n', 'sj', '<C-w>j', { noremap = true, silent = true }) --nvim pane switches
 vim.keymap.set('n', 'sk', '<C-w>k', { noremap = true, silent = true }) --nvim pane switches
 vim.keymap.set('n', 'sl', '<C-w>l', { noremap = true, silent = true }) --nvim pane switches
-
+vim.keymap.set('n', '<leader>l', ':Mason<CR>', { desc = 'mason [l]sp'})
+vim.keymap.set('n', '<leader>m', ':Lazy check<CR>', { desc = 'Lazy plugin [m]anager'})
 vim.keymap.set("v", "<leader>y", [["+y]], {desc = '[y]ank to clipboard'})
 vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = '[Y]ank to clipboard'})
 vim.keymap.set("n", "<leader>p", '"+p', { desc = '[p] paste from clipboard' })
