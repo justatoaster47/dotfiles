@@ -80,6 +80,7 @@ require('lazy').setup({
             'lua-language-server',
             'clangd',
             'clang-format',
+            'marksman',
           }
         }
       },
@@ -349,9 +350,8 @@ require'marks'.setup {
 --NAV KEYBINDS 
 -- vim.keymap.set({'n', 'v'}, "H", "_", {noremap = true, silent = true}) --start of line
 -- vim.keymap.set({'n', 'v'}, 'L', '$', {noremap = true, silent = true}) --end of line
-vim.keymap.set({'n', 'v'}, "H", "9h", {noremap = true, silent = true}) --start of line
-vim.keymap.set({'n', 'v'}, 'L', '9l', {noremap = true, silent = true}) --end of line
---consider doing block jumps with this instead
+vim.keymap.set({'n', 'v'}, "H", "7h", {noremap = true, silent = true}) --start of line
+vim.keymap.set({'n', 'v'}, 'L', '7l', {noremap = true, silent = true}) --end of line
 vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
@@ -363,19 +363,19 @@ vim.keymap.set('n', 'sh', '<C-w>h', { noremap = true, silent = true }) --nvim pa
 vim.keymap.set('n', 'sj', '<C-w>j', { noremap = true, silent = true }) --nvim pane switches
 vim.keymap.set('n', 'sk', '<C-w>k', { noremap = true, silent = true }) --nvim pane switches
 vim.keymap.set('n', 'sl', '<C-w>l', { noremap = true, silent = true }) --nvim pane switches
-vim.keymap.set('n', '<leader>l', ':Mason<CR>', { desc = 'mason [l]sp'})
-vim.keymap.set('n', '<leader>m', ':Lazy check<CR>', { desc = 'Lazy plugin [m]anager'})
+vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = '[m]ason plugin manager'})
+vim.keymap.set('n', '<leader>l', ':Lazy check<CR>', { desc = '[l]azy package manager'})
 vim.keymap.set("v", "<leader>y", [["+y]], {desc = '[y]ank to clipboard'})
 vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = '[Y]ank to clipboard'})
 vim.keymap.set("n", "<leader>p", '"+p', { desc = '[p] paste from clipboard' })
 vim.keymap.set("n", "<leader>P", '"0p', { desc = '[P]aste from last yank' })
-vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {noremap = true, silent = true, desc = 'cd [h]ere'})
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = 'make e[x]ecutable'})
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = '[e]xplore current directory'}) --exit to umbrella directory
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'open [d]iagnostic message' })
 vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>', {desc = '[q] md to pdf converter'}) --requires 'pip install mdpdf'
 vim.keymap.set('n', '<leader>w', ':term g++ -o %:r %<CR>', {desc = 'c++ compiler'}) --requires 'pip install mdpdf'
+vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'}) --requires 'pip install mdpdf'
 vim.keymap.set('n', 'szf', ':Files<CR>' ,{ desc = '[s]earch f[z]f [f]iles' })
 vim.keymap.set('n', 'szg', ':RG<CR>' ,{ desc = '[s]earch f[z]f [g]rep' })
 vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').oldfiles, { desc = '[ ] recent files' })
