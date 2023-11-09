@@ -6,9 +6,9 @@ vim.g.maplocalleader = ' '
 vim.o.nu = true
 vim.o.relativenumber = true
 vim.o.number = true
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.wrap = false
@@ -44,6 +44,7 @@ vim.keymap.set({ 'n', 'v'}, 's', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'ss', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'gn', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'gl', '<Nop>', {silent = true})
+vim.keymap.set({ 'n', 'v'}, 'U', '<Nop>', {silent = true})
 
 -- Package Manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -215,7 +216,7 @@ require('lazy').setup({
 
   --Editing enclosing characters
   --in visual mode use S then the enclosing character ' " { [ (
-  --or use ys (motion like iw iW 5w t) t; etc) then enclosing character ' " { [ (
+  --or use ys (motion like iw iW 5w t) t; l] etc) then enclosing character ' " { [ (
   'tpope/vim-surround',
 
   --show vim marks, set bookmarks (marks with 0-9), access via '
@@ -355,6 +356,7 @@ vim.keymap.set({'n', 'v'}, 'L', '7l', {noremap = true, silent = true}) --end of 
 vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
+vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
 vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half page jumps
 vim.keymap.set('n', 'K', '<C-u>zz', { noremap = true, silent = true }) --half page jumps
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
@@ -373,20 +375,22 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc =
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = '[e]xplore current directory'}) --exit to umbrella directory
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'open [d]iagnostic message' })
-vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>', {desc = '[q] md to pdf converter'}) --requires 'pip install mdpdf'
-vim.keymap.set('n', '<leader>w', ':term g++ -o %:r %<CR>', {desc = 'c++ compiler'}) --requires 'pip install mdpdf'
+-- vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>', {desc = '[q] md to pdf converter'}) --requires 'pip install mdpdf'. use open filename.pdf in term to preview
+-- vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>:term open %:r.pdf', {desc = '[q] md to pdf converter'}) --requires 'pip install mdpdf'. press enter to preview
+vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>:term mv %:r.pdf ~/Desktop<CR>', {desc = '[q] pdf -> Desktop'}) --requires 'pip install mdpdf'. press enter to preview
+vim.keymap.set('n', '<leader>w', ':term g++ -o %:r %<CR>', {desc = 'c++ compiler'})
 vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'}) --requires 'pip install mdpdf'
-vim.keymap.set('n', 'szf', ':Files<CR>' ,{ desc = '[s]earch f[z]f [f]iles' })
-vim.keymap.set('n', 'szg', ':RG<CR>' ,{ desc = '[s]earch f[z]f [g]rep' })
 vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').oldfiles, { desc = '[ ] recent files' })
-vim.keymap.set('n', 'sf', require('telescope.builtin').find_files, { desc = '[s]earch [f]iles' })
+-- vim.keymap.set('n', 'sf', require('telescope.builtin').find_files, { desc = '[s]earch [f]iles' })
+vim.keymap.set('n', 'sf', ':Files<CR>' ,{ desc = '[s]earch [f]iles' })
 vim.keymap.set('n', 'si', require('telescope.builtin').git_files , { desc = '[s]earch g[i]t Files' })
 vim.keymap.set('n', 'sd', require('telescope.builtin').diagnostics, { desc = '[s]earch [d]iagnostics' })
-vim.keymap.set('n', 'sg', require('telescope.builtin').live_grep, { desc = '[s]earch [g]rep' })
+-- vim.keymap.set('n', 'sg', require('telescope.builtin').live_grep, { desc = '[s]earch [g]rep' })
+vim.keymap.set('n', 'sg', ':RG<CR>' ,{ desc = '[s]earch [g]rep' })
 vim.keymap.set('n', 'sb', require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[s]earch [b]uffer' })
 vim.keymap.set('n', 'sc', require('telescope.builtin').git_bcommits, { desc = '[s]earch [c]ommits' })
 vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, { desc = '[g]o to [d]efinition'})
-vim.keymap.set('n', 'sr', require('telescope.builtin').lsp_references, { desc = '[s]earch [r]eferences'})
+vim.keymap.set({'n', 'v'}, 'sr', require('telescope.builtin').lsp_references, { desc = '[s]earch [r]eferences'})
 vim.keymap.set('n', 'ss', require('telescope.builtin').lsp_document_symbols, { desc = '[s]earch [s]ymbols'})
 vim.keymap.set('n', 'sm', require('telescope.builtin').marks, { desc = '[s]earch [m]arks'})
 
