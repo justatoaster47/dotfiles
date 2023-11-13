@@ -233,7 +233,11 @@ require('lazy').setup({
     --fzf integration into vim for larger searches
     'junegunn/fzf',
     'junegunn/fzf.vim',
-  }
+  },
+
+  {
+  'junegunn/vim-peekaboo'
+  },
 
 }, {})
 
@@ -361,10 +365,10 @@ vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half pa
 vim.keymap.set('n', 'K', '<C-u>zz', { noremap = true, silent = true }) --half page jumps
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
-vim.keymap.set('n', 'sh', '<C-w>h', { noremap = true, silent = true }) --nvim pane switches
-vim.keymap.set('n', 'sj', '<C-w>j', { noremap = true, silent = true }) --nvim pane switches
-vim.keymap.set('n', 'sk', '<C-w>k', { noremap = true, silent = true }) --nvim pane switches
-vim.keymap.set('n', 'sl', '<C-w>l', { noremap = true, silent = true }) --nvim pane switches
+vim.keymap.set('n', 'sh', '<C-w>h', { noremap = true, silent = true, desc= '<- window'}) --nvim pane switches
+vim.keymap.set('n', 'sj', '<C-w>j', { noremap = true, silent = true, desc= 'V window'}) --nvim pane switches
+vim.keymap.set('n', 'sk', '<C-w>k', { noremap = true, silent = true, desc= '^ window'}) --nvim pane switches
+vim.keymap.set('n', 'sl', '<C-w>l', { noremap = true, silent = true, desc= '-> window'}) --nvim pane switches
 vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = '[m]ason plugin manager'})
 vim.keymap.set('n', '<leader>l', ':Lazy check<CR>', { desc = '[l]azy package manager'})
 vim.keymap.set("v", "<leader>y", [["+y]], {desc = '[y]ank to clipboard'})
@@ -373,6 +377,8 @@ vim.keymap.set("n", "<leader>p", '"+p', { desc = '[p] paste from clipboard' })
 vim.keymap.set("n", "<leader>P", '"0p', { desc = '[P]aste from last yank' })
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = 'make e[x]ecutable'})
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = '[e]xplore current directory'}) --exit to umbrella directory
+vim.keymap.set('n', '<leader>n', ':bn', {desc = '[n]ext buffer'})
+vim.keymap.set('n', '<leader>b', ':bl', {desc = '[b]ack buffer'})
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'open [d]iagnostic message' })
 -- vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>', {desc = '[q] md to pdf converter'}) --requires 'pip install mdpdf'. use open filename.pdf in term to preview
@@ -388,7 +394,9 @@ vim.keymap.set('n', 'sd', require('telescope.builtin').diagnostics, { desc = '[s
 -- vim.keymap.set('n', 'sg', require('telescope.builtin').live_grep, { desc = '[s]earch [g]rep' })
 vim.keymap.set('n', 'sg', ':RG<CR>' ,{ desc = '[s]earch [g]rep' })
 vim.keymap.set('n', 'sb', require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[s]earch [b]uffer' })
-vim.keymap.set('n', 'sc', require('telescope.builtin').git_bcommits, { desc = '[s]earch [c]ommits' })
+vim.keymap.set('n', 'sC', require('telescope.builtin').git_bcommits, { desc = '[s]earch [C]ommits' })
+vim.keymap.set('n', 'sk', require('telescope.builtin').keymaps, { desc = '[s]earch [k]eymaps' })
+vim.keymap.set('n', 'sc', require('telescope.builtin').commands, { desc = '[s]earch [c]ommands' })
 vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, { desc = '[g]o to [d]efinition'})
 vim.keymap.set({'n', 'v'}, 'sr', require('telescope.builtin').lsp_references, { desc = '[s]earch [r]eferences'})
 vim.keymap.set('n', 'ss', require('telescope.builtin').lsp_document_symbols, { desc = '[s]earch [s]ymbols'})
