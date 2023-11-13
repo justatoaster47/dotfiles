@@ -377,8 +377,8 @@ vim.keymap.set("n", "<leader>p", '"+p', { desc = '[p] paste from clipboard' })
 vim.keymap.set("n", "<leader>P", '"0p', { desc = '[P]aste from last yank' })
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = 'make e[x]ecutable'})
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = '[e]xplore current directory'}) --exit to umbrella directory
-vim.keymap.set('n', '<leader>n', ':bn', {desc = '[n]ext buffer'})
-vim.keymap.set('n', '<leader>b', ':bl', {desc = '[b]ack buffer'})
+vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
+vim.keymap.set('n', '<leader>b', ':bl<CR>', {desc = '[b]ack buffer'})
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'open [d]iagnostic message' })
 -- vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>', {desc = '[q] md to pdf converter'}) --requires 'pip install mdpdf'. use open filename.pdf in term to preview
