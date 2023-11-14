@@ -222,6 +222,9 @@ require('lazy').setup({
   --show vim marks, set bookmarks (marks with 0-9), access via '
   'chentoast/marks.nvim',
 
+  --preview substitutions
+  'markonm/traces.vim',
+
   {
     'sainnhe/gruvbox-material',
     config = function()
@@ -362,13 +365,16 @@ vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next 
 vim.keymap.set('n', '*', '*zzz', { noremap = true, silent = true }) -- keeps word search in middle of page
 -- vim.keymap.set('v', '*', [[y/\V<C-R>=escape(@",'/\')<CR><CR>Nzzzv]], { noremap = true, silent = true }) -- puts visually selected text into search buffer
 vim.keymap.set('v', '*', [[y/\V<C-R>"<CR>Nzzzv]], { noremap = true, silent = true }) -- puts visually selected text into search buffer
-vim.keymap.set('v', 'R', [[:s/\(.*\)/\1]], { noremap = true, silent = true }) --replace in a region, reference old text \1
+vim.keymap.set('v', 'R', [[:s/\(.*\)/]], { noremap = true, silent = true }) --replace in a region, reference old text with \1
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
+vim.keymap.set("n", "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register, no character swaps but able to delete & retain yank register
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
-vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half page jumps
-vim.keymap.set('n', 'K', '<C-u>zz', { noremap = true, silent = true }) --half page jumps
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
+-- vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half page jumps
+-- vim.keymap.set('n', 'K', '<C-u>zz', { noremap = true, silent = true }) --half page jumps
+vim.keymap.set({"n", "v"}, "J", "10jzz", { noremap = true, silent = true }) --half page jumps
+vim.keymap.set({"n", "v"}, 'K', '10kzz', { noremap = true, silent = true }) --half page jumps
+vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
+vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set('n', 'sh', '<C-w>h', { noremap = true, silent = true, desc= '<- window'}) --nvim pane switches
 vim.keymap.set('n', 'sj', '<C-w>j', { noremap = true, silent = true, desc= 'V window'}) --nvim pane switches
 vim.keymap.set('n', 'sk', '<C-w>k', { noremap = true, silent = true, desc= '^ window'}) --nvim pane switches
@@ -385,12 +391,13 @@ vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
 vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = '[N]ew buffer'})
 vim.keymap.set('n', '<leader>b', ':buffers<CR>', {desc = '[b]uffers'})
 vim.keymap.set('n', '<leader>B', ':bd<CR>', {desc = 'delete [B]uffer'})
+vim.keymap.set('n', '<leader>o', 'q:', {desc = '[o]ld commands'})
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'open [d]iagnostic message' })
 -- vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>', {desc = '[q] md to pdf converter'}) --requires 'pip install mdpdf'. use open filename.pdf in term to preview
--- vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>:term open %:r.pdf', {desc = '[q] md to pdf converter'}) --requires 'pip install mdpdf'. press enter to preview
-vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>:term mv %:r.pdf ~/Desktop<CR>', {desc = '[q] pdf -> Desktop'}) --requires 'pip install mdpdf'. press enter to preview
-vim.keymap.set('n', '<leader>w', ':term g++ -o %:r %<CR>', {desc = 'c++ compiler'})
+-- vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>:! open %:r.pdf', {desc = '[q] md to pdf converter'}) --requires 'pip install mdpdf'. press enter to preview
+-- vim.keymap.set('n', '<leader>q', ':! mdpdf -o %:r.pdf %<CR>:! mv %:r.pdf ~/Desktop<CR>', {desc = '[q] pdf -> Desktop'}) --requires 'pip install mdpdf'. press enter to preview
+vim.keymap.set('n', '<leader>w', ':! g++ -o %:r %<CR>', {desc = 'c++ compiler'})
 vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'}) --requires 'pip install mdpdf'
 vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').oldfiles, { desc = '[ ] recent files' })
 -- vim.keymap.set('n', 'sf', require('telescope.builtin').find_files, { desc = '[s]earch [f]iles' })
