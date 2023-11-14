@@ -44,6 +44,8 @@ alias gb="git branch"
 alias gk="git checkout"
 alias gs="git status"
 alias gp="git push"
+alias gr="git rebase origin/main"
+alias gf="git fetch origin"
 
 
 # >>> conda initialize >>>
