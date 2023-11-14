@@ -1,0 +1,19 @@
+# Window settings
+window:
+  padding:
+    x: 0
+    y: 0 
+  dimensions:
+    columns: 140 #horizontal start width
+    lines: 62  #vertical start width
+  decorations: full 
+  startup_mode: Windowed
+
+scrolling:
+  history: 500
+  multiplier: 5
+
+font:
+  # Point size of the font
+  size: 10.0
+

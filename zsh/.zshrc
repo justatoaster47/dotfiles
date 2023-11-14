@@ -34,6 +34,8 @@ alias x="exit"
 alias p="cat"
 alias P="bat"
 alias o="g++ -o" 
+alias t="tmux" 
+alias k="killall tmux"
 
 alias ga="git add"
 alias gc="git commit -m"

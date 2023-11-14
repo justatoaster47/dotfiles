@@ -361,6 +361,7 @@ vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next 
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
+vim.keymap.set('n', '*', '*N', { noremap = true, silent = true }) --register search term with *, n & N to naviagate
 vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half page jumps
 vim.keymap.set('n', 'K', '<C-u>zz', { noremap = true, silent = true }) --half page jumps
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
@@ -379,7 +380,7 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc =
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = '[e]xplore current directory'}) --exit to umbrella directory
 vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
 vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = '[N]ew buffer'})
-vim.keymap.set('n', '<leader>b', ':bl<CR>', {desc = '[b]ack buffer'})
+vim.keymap.set('n', '<leader>b', ':buffers<CR>', {desc = '[b]uffers'})
 vim.keymap.set('n', '<leader>B', ':bd<CR>', {desc = 'delete [B]uffer'})
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'open [d]iagnostic message' })
