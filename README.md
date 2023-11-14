@@ -20,5 +20,5 @@ vim.o.undodir = os.getenv("HOME") .. "/Desktop/code/undodir" --set where you wan
 
 ## Terminal preferences
 **ZSH,oh-my-zsh, Alacritty**  
-*brew install alacritty zsh*  
+*brew install --no-quarantine alacritty zsh*  
 *sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
