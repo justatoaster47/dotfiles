@@ -359,9 +359,12 @@ vim.keymap.set({'n', 'v'}, "H", "7h", {noremap = true, silent = true}) --start o
 vim.keymap.set({'n', 'v'}, 'L', '7l', {noremap = true, silent = true}) --end of line
 vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
+vim.keymap.set('n', '*', '*zzz', { noremap = true, silent = true }) -- keeps word search in middle of page
+-- vim.keymap.set('v', '*', [[y/\V<C-R>=escape(@",'/\')<CR><CR>Nzzzv]], { noremap = true, silent = true }) -- puts visually selected text into search buffer
+vim.keymap.set('v', '*', [[y/\V<C-R>"<CR>Nzzzv]], { noremap = true, silent = true }) -- puts visually selected text into search buffer
+vim.keymap.set('v', 'R', [[:s/\(.*\)/\1]], { noremap = true, silent = true }) --replace in a region, reference old text \1
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
-vim.keymap.set('n', '*', '*N', { noremap = true, silent = true }) --register search term with *, n & N to naviagate
 vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half page jumps
 vim.keymap.set('n', 'K', '<C-u>zz', { noremap = true, silent = true }) --half page jumps
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 

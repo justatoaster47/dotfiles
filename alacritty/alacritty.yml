@@ -5,7 +5,7 @@ window:
     y: 0 
   dimensions:
     columns: 140 #horizontal start width
-    lines: 62  #vertical start width
+    lines: 64  #vertical start width
   decorations: full 
   startup_mode: Windowed
 
@@ -16,4 +16,5 @@ scrolling:
 font:
   # Point size of the font
   size: 10.0
+
 
