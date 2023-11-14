@@ -82,6 +82,7 @@ require('lazy').setup({
             'clangd',
             'clang-format',
             'marksman',
+            'pyright',
           }
         }
       },
@@ -367,6 +368,8 @@ vim.keymap.set('n', '*', '*zzz', { noremap = true, silent = true }) -- keeps wor
 vim.keymap.set('v', '*', [[y/\V<C-R>"<CR>Nzzzv]], { noremap = true, silent = true }) -- puts visually selected text into search buffer
 vim.keymap.set('v', 'R', [[:s/\(.*\)/]], { noremap = true, silent = true }) --replace in a region, reference old text with \1
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
+vim.keymap.set('n', 'ff', ':q<CR>', { noremap = true, silent = true }) --faster default quit / exit 
+vim.keymap.set('n', '<C-j>', 'mzJ|', { noremap = true, silent = true }) --append lower line behind current
 vim.keymap.set("n", "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register, no character swaps but able to delete & retain yank register
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
 -- vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half page jumps
