@@ -17,3 +17,8 @@ Also create / update **undodir** directory for undotree save history.
 ```lua
 vim.o.undodir = os.getenv("HOME") .. "/Desktop/code/undodir" --set where you want undodir
 ```
+
+## Terminal preferences
+ZSH,oh-my-zsh, Alacritty
+*brew install alacritty zsh*
+*sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
