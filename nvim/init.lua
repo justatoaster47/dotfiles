@@ -45,6 +45,7 @@ vim.keymap.set({ 'n', 'v'}, 'ss', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'gn', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'gl', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'U', '<Nop>', {silent = true})
+vim.keymap.set( 'n', '<C-h>', '<Nop>', {silent = true})
 
 -- Package Manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -368,16 +369,14 @@ vim.keymap.set('n', '*', '*zzz', { noremap = true, silent = true }) -- keeps wor
 vim.keymap.set('v', '*', [[y/\V<C-R>"<CR>Nzzzv]], { noremap = true, silent = true }) -- puts visually selected text into search buffer
 vim.keymap.set('v', 'R', [[:s/\(.*\)/]], { noremap = true, silent = true }) --replace in a region, reference old text with \1
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
-vim.keymap.set('n', 'ff', ':q<CR>', { noremap = true, silent = true }) --faster default quit / exit 
 vim.keymap.set('n', '<C-l>', 'mzJ|', { noremap = true, silent = true }) --append lower line behind current
-vim.keymap.set('n', '<C-j>', '<C-d>zz', { noremap = true, silent = true }) --append lower line behind current
-vim.keymap.set('n', '<C-k>', '<C-u>zz', { noremap = true, silent = true }) --append lower line behind current
 vim.keymap.set("n", "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register, no character swaps but able to delete & retain yank register
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
 -- vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half page jumps
 -- vim.keymap.set('n', 'K', '<C-u>zz', { noremap = true, silent = true }) --half page jumps
-vim.keymap.set({"n", "v"}, "J", "10jzz", { noremap = true, silent = true }) --half page jumps
-vim.keymap.set({"n", "v"}, 'K', '10kzz', { noremap = true, silent = true }) --half page jumps
+vim.keymap.set({"n", "v"}, "J", '10j', { noremap = true, silent = true }) --half page jumps
+vim.keymap.set({"n", "v"}, 'K', '10k', { noremap = true, silent = true }) --half page jumps
+vim.keymap.set( 'n', '<C-h>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set('n', 'sh', '<C-w>h', { noremap = true, silent = true, desc= '<- window'}) --nvim pane switches
