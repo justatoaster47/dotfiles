@@ -370,7 +370,7 @@ vim.keymap.set('v', '*', [[y/\V<C-R>"<CR>Nzzzv]], { noremap = true, silent = tru
 vim.keymap.set('v', 'R', [[:s/\(.*\)/]], { noremap = true, silent = true }) --replace in a region, reference old text with \1
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
 vim.keymap.set('n', '<C-l>', 'mzJ|', { noremap = true, silent = true }) --append lower line behind current
-vim.keymap.set("n", "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register, no character swaps but able to delete & retain yank register
+vim.keymap.set({"n", 'v'}, "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register, no character swaps but able to delete & retain yank register
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
 -- vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half page jumps
 -- vim.keymap.set('n', 'K', '<C-u>zz', { noremap = true, silent = true }) --half page jumps
@@ -395,6 +395,7 @@ vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
 vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = '[N]ew buffer'})
 vim.keymap.set('n', '<leader>b', ':buffers<CR>', {desc = '[b]uffers'})
 vim.keymap.set('n', '<leader>B', ':bd<CR>', {desc = 'delete [B]uffer'})
+vim.keymap.set('n', '<leader>a', 'ggVG"+yg;', {desc = 'copy [a]ll to sys clipboard'})
 vim.keymap.set('n', '<leader>o', 'q:', {desc = '[o]ld commands'})
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'open [d]iagnostic message' })
