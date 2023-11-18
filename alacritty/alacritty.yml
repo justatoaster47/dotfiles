@@ -4,8 +4,8 @@ window:
     x: 0
     y: 0 
   dimensions:
-    columns: 140 #horizontal start width
-    lines: 64  #vertical start width
+    columns: 215 #horizontal start width
+    lines: 65  #vertical start width
   decorations: full 
   startup_mode: Windowed
 

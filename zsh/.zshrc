@@ -28,7 +28,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 alias v="nvim"
-alias d="cd ~/Desktop/code"
+alias d="cd ~/Documents/code"
 alias c="clear"
 alias x="exit"
 alias p="cat"
