@@ -24,4 +24,4 @@ vim.o.undodir = os.getenv("HOME") .. "/Documents/code/undodir" --set where you w
 
 ## Other Good Installs
 1. bat (homebrew, alternative to cat w. syntax highlighting)
-2. jq (JSON reader)
+2. jqp (good JSON reader)
