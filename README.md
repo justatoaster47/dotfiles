@@ -5,7 +5,7 @@
 4. Ripgrep
 6. Fzf
 
-**Example Installation**  
+**Example Installation**
 *brew install neovim git tmux ripgrep fzf*  
 
 ## Directory Locations
@@ -22,6 +22,6 @@ vim.o.undodir = os.getenv("HOME") .. "/Documents/code/undodir" --set where you w
 *sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 *chsh -s $(which zsh)* 
 
-##Other Good Installs**
+## Other Good Installs
 1. bat (homebrew, alternative to cat w. syntax highlighting)
 2. jq (JSON reader)
