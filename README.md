@@ -5,7 +5,7 @@
 4. Ripgrep
 6. Fzf
 
-**Example Installation**
+**Example Installation**  
 *brew install neovim git tmux ripgrep fzf*  
 
 ## Directory Locations
