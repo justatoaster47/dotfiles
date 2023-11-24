@@ -374,8 +374,8 @@ vim.keymap.set({"n", 'v'}, "x", '"_x', {noremap = true, silent = true}) -- using
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
 -- vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half page jumps
 -- vim.keymap.set('n', 'K', '<C-u>zz', { noremap = true, silent = true }) --half page jumps
-vim.keymap.set({"n", "v"}, "J", '10j', { noremap = true, silent = true }) --half page jumps
-vim.keymap.set({"n", "v"}, 'K', '10k', { noremap = true, silent = true }) --half page jumps
+vim.keymap.set({"n", "v"}, "J", '10jzz', { noremap = true, silent = true }) --half page jumps
+vim.keymap.set({"n", "v"}, 'K', '10kzz', { noremap = true, silent = true }) --half page jumps
 vim.keymap.set( 'n', '<C-h>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
@@ -402,8 +402,9 @@ vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'open [d]ia
 -- vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>', {desc = '[q] md to pdf converter'}) --requires 'pip install mdpdf'. use open filename.pdf in term to preview
 -- vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>:! open %:r.pdf', {desc = '[q] md to pdf converter'}) --requires 'pip install mdpdf'. press enter to preview
 -- vim.keymap.set('n', '<leader>q', ':! mdpdf -o %:r.pdf %<CR>:! mv %:r.pdf ~/Desktop<CR>', {desc = '[q] pdf -> Desktop'}) --requires 'pip install mdpdf'. press enter to preview
-vim.keymap.set('n', '<leader>w', ':! g++ -o %:r %<CR>', {desc = 'c++ compiler'})
+vim.keymap.set('n', '<leader>w', ':! g++ -std=c++14 -o %:r %<CR>', {desc = 'c++ compiler'})
 vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'}) --requires 'pip install mdpdf'
+vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd [h]ere'}) --requires 'pip install mdpdf'
 vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').oldfiles, { desc = '[ ] recent files' })
 -- vim.keymap.set('n', 'sf', require('telescope.builtin').find_files, { desc = '[s]earch [f]iles' })
 vim.keymap.set('n', 'sf', ':Files<CR>' ,{ desc = '[s]earch [f]iles' })

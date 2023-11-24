@@ -13,6 +13,9 @@ scrolling:
   history: 500
   multiplier: 5
 
+scrollbar:
+  enabled: true
+
 font:
   # Point size of the font
   size: 10.0
