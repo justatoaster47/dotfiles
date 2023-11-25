@@ -361,7 +361,8 @@ require'marks'.setup {
 }
 
 vim.cmd[[
-  autocmd BufEnter * if &buftype == 'terminal' | startinsert | endif
+  autocmd BufEnter * if &buftype == 'terminal' | setlocal bufhidden= nobuflisted nolist nonumber norelativenumber | startinsert | endif
+  autocmd BufLeave * if &buftype == 'terminal' | setlocal bufhidden= | endif
 ]]
 
 --NAV KEYBINDS 
