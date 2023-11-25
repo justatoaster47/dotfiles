@@ -48,6 +48,8 @@ vim.keymap.set({ 'n', 'v'}, 'U', '<Nop>', {silent = true})
 vim.keymap.set('n', '<C-h>', '<Nop>', {silent = true})
 vim.keymap.set({'n', 't'}, '<C-w>]', '<Nop>', {silent = true})
 vim.keymap.set({'n', 't'}, '<C-w>[', '<Nop>', {silent = true})
+vim.keymap.set({'n', 't'}, '<C-n>', '<Nop>', {silent = true})
+vim.keymap.set({'n', 't'}, '<C-t>', '<Nop>', {silent = true})
 
 -- Package Manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -366,38 +368,32 @@ require'marks'.setup {
 --list some common ones: v for vert split, s for horiz, q to close current, o to close other, 
 --t to move split to new tab, hjkl normal navigation, = to equalize sizes, x to swap panes
 vim.keymap.set({'n', 'v', 't'}, '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
-vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true })
-vim.keymap.set('t', 'jj', '<C-\\><C-n>', { noremap = true })
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
+vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables this in terminal
+vim.keymap.set('t', 'jj', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
 vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize
-vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true })
-vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true })
+vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing panes
+vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true }) --resizing panes
+vim.keymap.set('n', 'D', 'dd', { noremap = true }) --D also deletes empty lines
+vim.keymap.set('n', '<C-n>', ':tabn<CR>', { noremap = true }) --D also deletes empty lines
+vim.keymap.set('n', '<C-t>', ':tabnew<CR>', { noremap = true }) --D also deletes empty lines
 
--- vim.keymap.set({'n', 'v'}, "H", "_", {noremap = true, silent = true}) --start of line
--- vim.keymap.set({'n', 'v'}, 'L', '$', {noremap = true, silent = true}) --end of line
 vim.keymap.set({'n', 'v'}, "H", "7h", {noremap = true, silent = true}) --start of line
 vim.keymap.set({'n', 'v'}, 'L', '7l', {noremap = true, silent = true}) --end of line
 vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
 vim.keymap.set('n', '*', '*zzz', { noremap = true, silent = true }) -- keeps word search in middle of page
--- vim.keymap.set('v', '*', [[y/\V<C-R>=escape(@",'/\')<CR><CR>Nzzzv]], { noremap = true, silent = true }) -- puts visually selected text into search buffer
 vim.keymap.set('v', '*', [[y/\V<C-R>"<CR>Nzzzv]], { noremap = true, silent = true }) -- puts visually selected text into search buffer
 vim.keymap.set('v', 'R', [[:s/\(.*\)/]], { noremap = true, silent = true }) --replace in a region, reference old text with \1
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
 vim.keymap.set('n', '<C-l>', 'mzJ|', { noremap = true, silent = true }) --append lower line behind current
 vim.keymap.set({"n", 'v'}, "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register, no character swaps but able to delete & retain yank register
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
--- vim.keymap.set("n", "J", "<C-d>zz", { noremap = true, silent = true }) --half page jumps
--- vim.keymap.set('n', 'K', '<C-u>zz', { noremap = true, silent = true }) --half page jumps
 vim.keymap.set({"n", "v"}, "J", '10jzz', { noremap = true, silent = true }) --half page jumps
 vim.keymap.set({"n", "v"}, 'K', '10kzz', { noremap = true, silent = true }) --half page jumps
 vim.keymap.set( 'n', '<C-h>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
--- vim.keymap.set('n', 'sh', '<C-w>h', { noremap = true, silent = true, desc= '<- window'}) --nvim pane switches
--- vim.keymap.set('n', 'sj', '<C-w>j', { noremap = true, silent = true, desc= 'V window'}) --nvim pane switches
--- vim.keymap.set('n', 'sk', '<C-w>k', { noremap = true, silent = true, desc= '^ window'}) --nvim pane switches
--- vim.keymap.set('n', 'sl', '<C-w>l', { noremap = true, silent = true, desc= '-> window'}) --nvim pane switches
 vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = '[m]ason plugin manager'})
 vim.keymap.set('n', '<leader>l', ':Lazy check<CR>', { desc = '[l]azy package manager'})
 vim.keymap.set("v", "<leader>y", [["+y]], {desc = '[y]ank to clipboard'})
@@ -414,18 +410,13 @@ vim.keymap.set('n', '<leader>a', 'ggVG"+yg;', {desc = 'copy [a]ll to sys clipboa
 vim.keymap.set('n', '<leader>o', 'q:', {desc = '[o]ld commands'})
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'open [d]iagnostic message' })
--- vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>', {desc = '[q] md to pdf converter'}) --requires 'pip install mdpdf'. use open filename.pdf in term to preview
--- vim.keymap.set('n', '<leader>q', ':!mdpdf -o %:r.pdf %<CR>:! open %:r.pdf', {desc = '[q] md to pdf converter'}) --requires 'pip install mdpdf'. press enter to preview
--- vim.keymap.set('n', '<leader>q', ':! mdpdf -o %:r.pdf %<CR>:! mv %:r.pdf ~/Desktop<CR>', {desc = '[q] pdf -> Desktop'}) --requires 'pip install mdpdf'. press enter to preview
 vim.keymap.set('n', '<leader>w', ':! g++ -std=c++14 -o %:r %<CR>', {desc = 'c++ compiler'})
 vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'}) --requires 'pip install mdpdf'
 vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd [h]ere'}) --requires 'pip install mdpdf'
 vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').oldfiles, { desc = '[ ] recent files' })
--- vim.keymap.set('n', 'sf', require('telescope.builtin').find_files, { desc = '[s]earch [f]iles' })
 vim.keymap.set('n', 'sf', ':Files<CR>' ,{ desc = '[s]earch [f]iles' })
 vim.keymap.set('n', 'si', require('telescope.builtin').git_files , { desc = '[s]earch g[i]t Files' })
 vim.keymap.set('n', 'sd', require('telescope.builtin').diagnostics, { desc = '[s]earch [d]iagnostics' })
--- vim.keymap.set('n', 'sg', require('telescope.builtin').live_grep, { desc = '[s]earch [g]rep' })
 vim.keymap.set('n', 'sg', ':RG<CR>' ,{ desc = '[s]earch [g]rep' })
 vim.keymap.set('n', 'sb', require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[s]earch [b]uffer' })
 vim.keymap.set('n', 'sC', require('telescope.builtin').git_bcommits, { desc = '[s]earch [C]ommits' })
