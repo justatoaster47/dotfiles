@@ -1,25 +1,16 @@
 ## Nvim Dependencies
+Install with brew, apt, etc  
+Place **init.lua** to **~/.config**  
 1. Neovim 
 2. Ripgrep
 3. Fzf  
 
-*install with brew, apt, etc*  
-
-Place **init.lua** to **~/.config**
-
 ## Terminal installs (Mac)  
+Place **.zshrc** to **~/**  
+Change shell to zsh ```chsh -s $(which zsh)```
 1. ZSH  
 2. oh-my-zsh  
 3. Alacritty  
-
-Place **.zshrc** to **~/** or equivalent.
-
-```
-brew install --no-quarantine alacritty zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  
-chsh -s $(which zsh)
-```
-
 
 ## Other Good Installs
 1. bat (homebrew, alternative to cat w. syntax highlighting)
