@@ -1,17 +1,13 @@
 ## Dependencies
 1. Neovim 
 2. Git
-4. Ripgrep
-6. Fzf
-
-**Example Installation**  
-*brew install neovim git ripgrep fzf*  
+3. Ripgrep
+4. Fzf
 
 ## Directory Locations
-Place **nvim** to **~/.config** or equivalent.
-Place **.zshrc** to **~/** or equivalent.
-Also create / update location of **undodir** directory for undotree save history. 
-
+Place **nvim** to **~/.config** or equivalent.  
+Place **.zshrc** to **~/** or equivalent.  
+Also create / update location of **undodir** directory for undotree save history.  
 ```lua
 vim.o.undodir = os.getenv("HOME") .. "/Documents/code/undodir" --set where you want undodir
 ```
@@ -26,3 +22,12 @@ vim.o.undodir = os.getenv("HOME") .. "/Documents/code/undodir" --set where you w
 1. bat (homebrew, alternative to cat w. syntax highlighting)
 2. jqp (good JSON reader)
 3. tmux (multiple terminals)
+
+## Sometimes the OS doesn't support new neovim
+*using curl to install neovim*  
+*run with ./nvim.appimage* 
+```
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x nvim.appimage
+./nvim.appimage
+```
