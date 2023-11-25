@@ -25,9 +25,9 @@ vim.o.undodir = os.getenv("HOME") .. "/Documents/code/undodir" --set where you w
 
 ## Sometimes the OS doesn't support new neovim
 *using curl to install neovim*  
-*run with ./nvim.appimage* 
 ```
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
-./nvim.appimage
 ```
+**run with**
+```./nvim.appimage```
