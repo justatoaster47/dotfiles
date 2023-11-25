@@ -379,8 +379,8 @@ vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize
 vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing panes
 vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true }) --resizing panes
 vim.keymap.set('n', 'D', 'dd', { noremap = true }) --D also deletes empty lines
-vim.keymap.set('n', '<C-n>', ':tabn<CR>', { noremap = true }) --D also deletes empty lines
-vim.keymap.set('n', '<C-t>', ':tabnew<CR>', { noremap = true }) --D also deletes empty lines
+vim.keymap.set('n', '<C-n>', ':tabn<CR>', { noremap = true }) --basic tab navigation if needed
+vim.keymap.set('n', '<C-t>', ':tabnew<CR>', { noremap = true }) --basic tab navigation if needed
 
 vim.keymap.set({'n', 'v'}, "H", "7h", {noremap = true, silent = true}) --start of line
 vim.keymap.set({'n', 'v'}, 'L', '7l', {noremap = true, silent = true}) --end of line
