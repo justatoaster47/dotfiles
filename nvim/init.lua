@@ -45,7 +45,9 @@ vim.keymap.set({ 'n', 'v'}, 'ss', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'gn', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'gl', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'U', '<Nop>', {silent = true})
-vim.keymap.set( 'n', '<C-h>', '<Nop>', {silent = true})
+vim.keymap.set('n', '<C-h>', '<Nop>', {silent = true})
+vim.keymap.set({'n', 't'}, '<C-w>]', '<Nop>', {silent = true})
+vim.keymap.set({'n', 't'}, '<C-w>[', '<Nop>', {silent = true})
 
 -- Package Manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -358,6 +360,19 @@ require'marks'.setup {
 }
 
 --NAV KEYBINDS 
+
+--for window management
+--Tab works for all normal window commands too, but is regular tab in insert mode
+--list some common ones: v for vert split, s for horiz, q to close current, o to close other, 
+--t to move split to new tab, hjkl normal navigation, = to equalize sizes, x to swap panes
+vim.keymap.set({'n', 'v', 't'}, '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
+vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true })
+vim.keymap.set('t', 'jj', '<C-\\><C-n>', { noremap = true })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
+vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize
+vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true })
+vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true })
+
 -- vim.keymap.set({'n', 'v'}, "H", "_", {noremap = true, silent = true}) --start of line
 -- vim.keymap.set({'n', 'v'}, 'L', '$', {noremap = true, silent = true}) --end of line
 vim.keymap.set({'n', 'v'}, "H", "7h", {noremap = true, silent = true}) --start of line
@@ -379,10 +394,10 @@ vim.keymap.set({"n", "v"}, 'K', '10kzz', { noremap = true, silent = true }) --ha
 vim.keymap.set( 'n', '<C-h>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
-vim.keymap.set('n', 'sh', '<C-w>h', { noremap = true, silent = true, desc= '<- window'}) --nvim pane switches
-vim.keymap.set('n', 'sj', '<C-w>j', { noremap = true, silent = true, desc= 'V window'}) --nvim pane switches
-vim.keymap.set('n', 'sk', '<C-w>k', { noremap = true, silent = true, desc= '^ window'}) --nvim pane switches
-vim.keymap.set('n', 'sl', '<C-w>l', { noremap = true, silent = true, desc= '-> window'}) --nvim pane switches
+-- vim.keymap.set('n', 'sh', '<C-w>h', { noremap = true, silent = true, desc= '<- window'}) --nvim pane switches
+-- vim.keymap.set('n', 'sj', '<C-w>j', { noremap = true, silent = true, desc= 'V window'}) --nvim pane switches
+-- vim.keymap.set('n', 'sk', '<C-w>k', { noremap = true, silent = true, desc= '^ window'}) --nvim pane switches
+-- vim.keymap.set('n', 'sl', '<C-w>l', { noremap = true, silent = true, desc= '-> window'}) --nvim pane switches
 vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = '[m]ason plugin manager'})
 vim.keymap.set('n', '<leader>l', ':Lazy check<CR>', { desc = '[l]azy package manager'})
 vim.keymap.set("v", "<leader>y", [["+y]], {desc = '[y]ank to clipboard'})
