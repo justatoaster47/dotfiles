@@ -361,6 +361,10 @@ require'marks'.setup {
   mappings = {}
 }
 
+vim.cmd[[
+  autocmd BufEnter * if &buftype == 'terminal' | startinsert | endif
+]]
+
 --NAV KEYBINDS 
 
 --for window management
