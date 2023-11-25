@@ -1,17 +1,17 @@
 ## Dependencies
 1. Neovim 
 2. Git
-3. Tmux
 4. Ripgrep
 6. Fzf
 
 **Example Installation**  
-*brew install neovim git tmux ripgrep fzf*  
+*brew install neovim git ripgrep fzf*  
 
 ## Directory Locations
-Place **nvim**, **tmux** directories your **~/.config** or equivalent.
-However, the zsh config file needs to be in **~** not **~/.config**
-Also create / update **undodir** directory for undotree save history.  
+Place **nvim** to **~/.config** or equivalent.
+Place **.zshrc** to **~/** or equivalent.
+Also create / update location of **undodir** directory for undotree save history. 
+
 ```lua
 vim.o.undodir = os.getenv("HOME") .. "/Documents/code/undodir" --set where you want undodir
 ```
@@ -25,3 +25,4 @@ vim.o.undodir = os.getenv("HOME") .. "/Documents/code/undodir" --set where you w
 ## Other Good Installs
 1. bat (homebrew, alternative to cat w. syntax highlighting)
 2. jqp (good JSON reader)
+3. tmux (multiple terminals)
