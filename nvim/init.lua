@@ -14,7 +14,6 @@ vim.o.smartindent = true
 vim.o.wrap = false
 vim.o.swapfile = false
 vim.o.backup = false
-vim.o.undodir = os.getenv("HOME") .. "/Documents/code/undodir" --set where you want undodir
 vim.o.undofile = true
 vim.o.hlsearch = false
 vim.o.incsearch = true
