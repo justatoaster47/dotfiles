@@ -10,13 +10,14 @@ Place **.zshrc** to **~/**
 Change shell to zsh ```chsh -s $(which zsh)```
 1. ZSH  
 2. oh-my-zsh  
-3. Alacritty  
+3. Alacritty
 
 ## Other Good Installs
 1. bat (homebrew, alternative to cat w. syntax highlighting)
 2. jqp (good JSON reader)
 3. tmux (multiple terminals)
 4. git (its git)
+5. gdb (debugging) [setup](https://sourceware.org/gdb/wiki/PermissionsDarwin#Create_a_certificate_in_the_System_Keychain)
 
 
 ## Sometimes the OS doesn't support new neovim
