@@ -308,6 +308,7 @@ require('lazy').setup({
 require'marks'.setup {
   mappings = {
     next = ";;",
+    set_bookmark0 = "m0",
     prev = false -- pass false to disable only this default mapping
   }
 }
