@@ -29,7 +29,6 @@ vim.o.completeopt = 'menuone,noselect'
 vim.wo.number = true
 vim.o.smartindent = true
 vim.o.smarttab = true
--- vim.o.autochdir = true
 vim.o.showcmd = true
 vim.o.title = true
 
@@ -50,6 +49,71 @@ vim.keymap.set({'n', 't'}, '<C-w>[', '<Nop>', {silent = true})
 vim.keymap.set({'n', 't'}, '<C-n>', '<Nop>', {silent = true})
 vim.keymap.set({'n', 't'}, '<C-t>', '<Nop>', {silent = true})
 
+
+--NAV KEYBINDS 
+--for window management
+--Tab works for all normal window commands too, but is regular tab in insert mode
+--list some common ones: v for vert split, s for horiz, q to close current, o to close other, 
+--t to move split to new tab, hjkl normal navigation, = to equalize sizes, x to swap panes
+vim.keymap.set({'n', 'v', 't'}, '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
+vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables this in terminal
+vim.keymap.set('t', 'jj', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
+vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize
+vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing panes
+vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true }) --resizing panes
+vim.keymap.set('n', 'D', 'dd', { noremap = true }) --D also deletes empty lines
+vim.keymap.set('n', '<C-n>', ':tabn<CR>', { noremap = true }) --basic tab navigation if needed
+vim.keymap.set('n', '<C-t>', ':tabnew<CR>', { noremap = true }) --basic tab navigation if needed
+vim.keymap.set({'n', 'v'}, "H", "7h", {noremap = true, silent = true}) --start of line
+vim.keymap.set({'n', 'v'}, 'L', '7l', {noremap = true, silent = true}) --end of line
+vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
+vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
+vim.keymap.set('n', '*', '*zzz', { noremap = true, silent = true }) -- keeps word search in middle of page
+vim.keymap.set('v', '*', [[y/\V<C-R>"<CR>Nzzzv]], { noremap = true, silent = true }) -- puts visually selected text into search buffer
+vim.keymap.set('v', 'R', [[:s/\(.*\)/]], { noremap = true, silent = true }) --replace in a region, reference old text with \1
+vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
+vim.keymap.set('n', '<C-l>', 'mzJ|', { noremap = true, silent = true }) --append lower line behind current
+vim.keymap.set({"n", 'v'}, "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register, no character swaps but able to delete & retain yank register
+vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
+vim.keymap.set({"n", "v"}, "J", '10jzz', { noremap = true, silent = true }) --half page jumps
+vim.keymap.set({"n", "v"}, 'K', '10kzz', { noremap = true, silent = true }) --half page jumps
+vim.keymap.set( 'n', '<C-h>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
+vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
+vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
+vim.keymap.set("v", "<leader>y", [["+y]], {desc = '[y]ank to clipboard'})
+vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = '[Y]ank to clipboard'})
+vim.keymap.set("n", "<leader>p", '"+p', { desc = '[p] paste from clipboard' })
+vim.keymap.set("n", "<leader>P", '"0p', { desc = '[P]aste from last yank' })
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = 'make e[x]ecutable'})
+vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = '[e]xplore current directory'}) --exit to umbrella directory
+vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
+vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = '[N]ew buffer'})
+vim.keymap.set('n', '<leader>b', ':buffers<CR>', {desc = '[b]uffers'})
+vim.keymap.set('n', '<leader>B', ':bd<CR>', {desc = 'delete [B]uffer'})
+vim.keymap.set('n', '<leader>a', 'ggVG"+yg;', {desc = 'copy [a]ll to sys clipboard'})
+vim.keymap.set('n', '<leader>o', 'q:', {desc = '[o]ld commands'})
+vim.keymap.set('n', '<leader>w', ':! g++ -g -std=c++14 -o %:r %<CR>', {desc = 'c++ compiler'})
+vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'}) --requires 'pip install mdpdf'
+vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd [h]ere'}) --requires 'pip install mdpdf'
+vim.keymap.set('n', 'sg', ':RG<CR>' ,{ desc = '[s]earch [g]rep' })
+vim.keymap.set('n', 'sf', ':Files<CR>' ,{ desc = '[s]earch [f]iles' })
+vim.keymap.set('n', 'sc', ':Commands<CR>' ,{ desc = '[s]earch [f]iles' })
+vim.keymap.set('n', 'so', ':History<CR>' ,{ desc = '[s]earch [f]iles' })
+
+vim.cmd[[
+  autocmd BufEnter * if &buftype == 'terminal' | setlocal bufhidden= nobuflisted nolist nonumber norelativenumber | startinsert | endif
+  autocmd BufLeave * if &buftype == 'terminal' | setlocal bufhidden= | endif
+]]
+
+
+
+
+--plugin dependent remaps
+vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
+vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = '[m]ason plugin manager'})
+vim.keymap.set('n', '<leader>l', ':Lazy check<CR>', { desc = '[l]azy package manager'})
+
 -- Package Manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -66,6 +130,34 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
 
+  --My Additions
+  -- Undotree
+  'mbbill/undotree',
+
+  --Editing enclosing characters
+  'tpope/vim-surround',
+
+  --show vim marks, set bookmarks (marks with 0-9), access via '
+  'chentoast/marks.nvim',
+
+  --preview substitutions
+  'markonm/traces.vim',
+
+  {
+    'sainnhe/gruvbox-material',
+    config = function()
+      vim.cmd.colorscheme 'gruvbox-material'
+    end,
+  },
+
+  {
+    --fzf integration into vim for larger searches
+    'junegunn/fzf',
+    'junegunn/fzf.vim',
+  },
+
+
+  --DEFAULTS
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -129,7 +221,7 @@ require('lazy').setup({
         change = { text = '~' },
         delete = { text = '_' },
         topdelete = { text = '‾' },
-        changedelete = { text = '~' },
+        changedelete = { text = '/' },
       },
       on_attach = function(bufnr)
         vim.keymap.set('n', 'gh', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[g]it [h]unk' })
@@ -215,39 +307,8 @@ require('lazy').setup({
   },
 
 
-  --My Additions
-  -- Undotree
-  'mbbill/undotree',
-
-  --Editing enclosing characters
-  --in visual mode use S then the enclosing character ' " { [ (
-  --or use ys (motion like iw iW 5w t) t; l] etc) then enclosing character ' " { [ (
-  'tpope/vim-surround',
-
-  --show vim marks, set bookmarks (marks with 0-9), access via '
-  'chentoast/marks.nvim',
-
-  --preview substitutions
-  'markonm/traces.vim',
-
-  {
-    'sainnhe/gruvbox-material',
-    config = function()
-      vim.cmd.colorscheme 'gruvbox-material'
-    end,
-  },
-
-  {
-    --fzf integration into vim for larger searches
-    'junegunn/fzf',
-    'junegunn/fzf.vim',
-  },
-
-  {
-  'junegunn/vim-peekaboo'
-  },
-
 }, {})
+
 
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -267,6 +328,19 @@ require('telescope').setup {
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
+--putting the telescope keymaps after telescope loads
+vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').oldfiles, { desc = '[ ] recent files' })
+vim.keymap.set('n', 'si', require('telescope.builtin').git_files , { desc = '[s]earch g[i]t Files' })
+vim.keymap.set('n', 'sd', require('telescope.builtin').diagnostics, { desc = '[s]earch [d]iagnostics' })
+vim.keymap.set({'n', 'v'}, 'sr', require('telescope.builtin').lsp_references, { desc = '[s]earch [r]eferences'})
+vim.keymap.set('n', 'sb', require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[s]earch [b]uffer' })
+vim.keymap.set('n', 'sC', require('telescope.builtin').git_bcommits, { desc = '[s]earch [C]ommits' })
+vim.keymap.set('n', 'sk', require('telescope.builtin').keymaps, { desc = '[s]earch [k]eymaps' })
+vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, { desc = '[g]o to [d]efinition'})
+vim.keymap.set('n', 'ss', require('telescope.builtin').lsp_document_symbols, { desc = '[s]earch [s]ymbols'})
+vim.keymap.set('n', 'sm', require('telescope.builtin').marks, { desc = '[s]earch [m]arks'})
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'open [d]iagnostic message' })
+
 -- [[ Configure Treesitter ]]
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
@@ -274,6 +348,9 @@ vim.defer_fn(function()
     auto_install = true,
     highlight = { enable = true },
     indent = { enable = true },
+    modules = {},
+    sync_install = false,
+    ignore_install = {},
   }
 end, 0)
 
@@ -348,88 +425,6 @@ cmp.setup {
   },
 }
 
---Marks config for vim marks and bookmarks/psuedo harpoon
-require'marks'.setup {
-  default_mappings = true,
-  builtin_marks = {},
-  cyclic = true,
-  force_write_shada = false,
-  refresh_interval = 250,
-  sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
-  excluded_filetypes = {},
-  mappings = {}
-}
-
-vim.cmd[[
-  autocmd BufEnter * if &buftype == 'terminal' | setlocal bufhidden= nobuflisted nolist nonumber norelativenumber | startinsert | endif
-  autocmd BufLeave * if &buftype == 'terminal' | setlocal bufhidden= | endif
-]]
-
---NAV KEYBINDS 
-
---for window management
---Tab works for all normal window commands too, but is regular tab in insert mode
---list some common ones: v for vert split, s for horiz, q to close current, o to close other, 
---t to move split to new tab, hjkl normal navigation, = to equalize sizes, x to swap panes
-vim.keymap.set({'n', 'v', 't'}, '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
-vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables this in terminal
-vim.keymap.set('t', 'jj', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
-vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize
-vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing panes
-vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true }) --resizing panes
-vim.keymap.set('n', 'D', 'dd', { noremap = true }) --D also deletes empty lines
-vim.keymap.set('n', '<C-n>', ':tabn<CR>', { noremap = true }) --basic tab navigation if needed
-vim.keymap.set('n', '<C-t>', ':tabnew<CR>', { noremap = true }) --basic tab navigation if needed
-
-vim.keymap.set({'n', 'v'}, "H", "7h", {noremap = true, silent = true}) --start of line
-vim.keymap.set({'n', 'v'}, 'L', '7l', {noremap = true, silent = true}) --end of line
-vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
-vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
-vim.keymap.set('n', '*', '*zzz', { noremap = true, silent = true }) -- keeps word search in middle of page
-vim.keymap.set('v', '*', [[y/\V<C-R>"<CR>Nzzzv]], { noremap = true, silent = true }) -- puts visually selected text into search buffer
-vim.keymap.set('v', 'R', [[:s/\(.*\)/]], { noremap = true, silent = true }) --replace in a region, reference old text with \1
-vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
-vim.keymap.set('n', '<C-l>', 'mzJ|', { noremap = true, silent = true }) --append lower line behind current
-vim.keymap.set({"n", 'v'}, "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register, no character swaps but able to delete & retain yank register
-vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
-vim.keymap.set({"n", "v"}, "J", '10jzz', { noremap = true, silent = true }) --half page jumps
-vim.keymap.set({"n", "v"}, 'K', '10kzz', { noremap = true, silent = true }) --half page jumps
-vim.keymap.set( 'n', '<C-h>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
-vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
-vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
-vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = '[m]ason plugin manager'})
-vim.keymap.set('n', '<leader>l', ':Lazy check<CR>', { desc = '[l]azy package manager'})
-vim.keymap.set("v", "<leader>y", [["+y]], {desc = '[y]ank to clipboard'})
-vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = '[Y]ank to clipboard'})
-vim.keymap.set("n", "<leader>p", '"+p', { desc = '[p] paste from clipboard' })
-vim.keymap.set("n", "<leader>P", '"0p', { desc = '[P]aste from last yank' })
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = 'make e[x]ecutable'})
-vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = '[e]xplore current directory'}) --exit to umbrella directory
-vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
-vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = '[N]ew buffer'})
-vim.keymap.set('n', '<leader>b', ':buffers<CR>', {desc = '[b]uffers'})
-vim.keymap.set('n', '<leader>B', ':bd<CR>', {desc = 'delete [B]uffer'})
-vim.keymap.set('n', '<leader>a', 'ggVG"+yg;', {desc = 'copy [a]ll to sys clipboard'})
-vim.keymap.set('n', '<leader>o', 'q:', {desc = '[o]ld commands'})
-vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'open [d]iagnostic message' })
-vim.keymap.set('n', '<leader>w', ':! g++ -std=c++14 -o %:r %<CR>', {desc = 'c++ compiler'})
-vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'}) --requires 'pip install mdpdf'
-vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd [h]ere'}) --requires 'pip install mdpdf'
-vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').oldfiles, { desc = '[ ] recent files' })
-vim.keymap.set('n', 'sf', ':Files<CR>' ,{ desc = '[s]earch [f]iles' })
-vim.keymap.set('n', 'si', require('telescope.builtin').git_files , { desc = '[s]earch g[i]t Files' })
-vim.keymap.set('n', 'sd', require('telescope.builtin').diagnostics, { desc = '[s]earch [d]iagnostics' })
-vim.keymap.set('n', 'sg', ':RG<CR>' ,{ desc = '[s]earch [g]rep' })
-vim.keymap.set('n', 'sb', require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[s]earch [b]uffer' })
-vim.keymap.set('n', 'sC', require('telescope.builtin').git_bcommits, { desc = '[s]earch [C]ommits' })
-vim.keymap.set('n', 'sk', require('telescope.builtin').keymaps, { desc = '[s]earch [k]eymaps' })
-vim.keymap.set('n', 'sc', require('telescope.builtin').commands, { desc = '[s]earch [c]ommands' })
-vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, { desc = '[g]o to [d]efinition'})
-vim.keymap.set({'n', 'v'}, 'sr', require('telescope.builtin').lsp_references, { desc = '[s]earch [r]eferences'})
-vim.keymap.set('n', 'ss', require('telescope.builtin').lsp_document_symbols, { desc = '[s]earch [s]ymbols'})
-vim.keymap.set('n', 'sm', require('telescope.builtin').marks, { desc = '[s]earch [m]arks'})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
