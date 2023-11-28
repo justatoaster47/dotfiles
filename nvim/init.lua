@@ -53,6 +53,8 @@ vim.keymap.set({'n', 'v', 't'}, '<Tab>', '<C-w>', { noremap = true }) --enables 
 vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables this in terminal
 vim.keymap.set('t', 'jj', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
+vim.keymap.set('n', ';', "'", { noremap = true }) --now ; accesses marks
+vim.keymap.set('n', "'", ";", { noremap = true }) --now ' accesses next f or t style search
 vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize
 vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing panes
 vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true }) --resizing panes
@@ -302,7 +304,15 @@ require('lazy').setup({
 
 }, {})
 
+--MY CONFIGS----------------------------------
+require'marks'.setup {
+  mappings = {
+    next = ";;",
+    prev = false -- pass false to disable only this default mapping
+  }
+}
 
+--DEFAULT CONFIGS----------------------------------
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
