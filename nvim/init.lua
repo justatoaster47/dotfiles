@@ -107,12 +107,11 @@ vim.cmd[[
 ]]
 
 
-
-
 --plugin dependent remaps
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
 vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = '[m]ason plugin manager'})
 vim.keymap.set('n', '<leader>l', ':Lazy check<CR>', { desc = '[l]azy package manager'})
+
 
 -- Package Manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -130,7 +129,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
 
-  --My Additions
+  --MY ADDITIONS---------------------------------
   -- Undotree
   'mbbill/undotree',
 
@@ -157,7 +156,7 @@ require('lazy').setup({
   },
 
 
-  --DEFAULTS
+  --DEFAULTS-----------------------------------
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -328,7 +327,7 @@ require('telescope').setup {
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
---putting the telescope keymaps after telescope loads
+--putting the telescope keymaps after telescope configures
 vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').oldfiles, { desc = '[ ] recent files' })
 vim.keymap.set('n', 'si', require('telescope.builtin').git_files , { desc = '[s]earch g[i]t Files' })
 vim.keymap.set('n', 'sd', require('telescope.builtin').diagnostics, { desc = '[s]earch [d]iagnostics' })
@@ -424,7 +423,6 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
-
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
