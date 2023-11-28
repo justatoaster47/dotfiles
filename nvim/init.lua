@@ -307,8 +307,16 @@ require('lazy').setup({
 --MY CONFIGS----------------------------------
 require'marks'.setup {
   mappings = {
-    next = ";;",
-    set_bookmark0 = "m0",
+    next_bookmark = ";;",
+    delete_bookmark = "dm",
+    set_bookmark0 = "ma",
+    set_bookmark1 = "ms",
+    set_bookmark2 = "md",
+    set_bookmark3 = "mf",
+    next_bookmark0 = ";a",
+    next_bookmark1 = ";s",
+    next_bookmark2 = ";d",
+    next_bookmark3 = ";f",
     prev = false -- pass false to disable only this default mapping
   }
 }
