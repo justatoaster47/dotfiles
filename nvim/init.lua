@@ -33,7 +33,6 @@ vim.o.showcmd = true
 vim.o.title = true
 
 --Keybind Removals below
---Keybind Sets will be at EOF
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set({ 'n', 'v'}, 'C-k', '<Nop>', {silent = true})
 vim.keymap.set({ 'n'}, 'K', '<Nop>', {silent = true})
@@ -49,12 +48,7 @@ vim.keymap.set({'n', 't'}, '<C-w>[', '<Nop>', {silent = true})
 vim.keymap.set({'n', 't'}, '<C-n>', '<Nop>', {silent = true})
 vim.keymap.set({'n', 't'}, '<C-t>', '<Nop>', {silent = true})
 
-
 --NAV KEYBINDS 
---for window management
---Tab works for all normal window commands too, but is regular tab in insert mode
---list some common ones: v for vert split, s for horiz, q to close current, o to close other, 
---t to move split to new tab, hjkl normal navigation, = to equalize sizes, x to swap panes
 vim.keymap.set({'n', 'v', 't'}, '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
 vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables this in terminal
 vim.keymap.set('t', 'jj', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
@@ -101,13 +95,13 @@ vim.keymap.set('n', 'sf', ':Files<CR>' ,{ desc = '[s]earch [f]iles' })
 vim.keymap.set('n', 'sc', ':Commands<CR>' ,{ desc = '[s]earch [f]iles' })
 vim.keymap.set('n', 'so', ':History<CR>' ,{ desc = '[s]earch [f]iles' })
 
+--Setting up terminal nav for vim splits
 vim.cmd[[
   autocmd BufEnter * if &buftype == 'terminal' | setlocal bufhidden= nobuflisted nolist nonumber norelativenumber | startinsert | endif
   autocmd BufLeave * if &buftype == 'terminal' | setlocal bufhidden= | endif
 ]]
 
-
---plugin dependent remaps
+--plugin based but not dependent remaps
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
 vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = '[m]ason plugin manager'})
 vim.keymap.set('n', '<leader>l', ':Lazy check<CR>', { desc = '[l]azy package manager'})
