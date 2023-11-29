@@ -32,11 +32,10 @@ vim.o.smarttab = true
 vim.o.showcmd = true
 vim.o.title = true
 
+
 --Keybind Removals below
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set({ 'n', 'v'}, 'C-k', '<Nop>', {silent = true})
-vim.keymap.set({ 'n'}, 'K', '<Nop>', {silent = true})
-vim.keymap.set({ 'n'}, 'H', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 's', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'ss', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'gn', '<Nop>', {silent = true})
@@ -50,30 +49,20 @@ vim.keymap.set({'n', 't'}, '<C-t>', '<Nop>', {silent = true})
 
 --NAV KEYBINDS 
 vim.keymap.set({'n', 'v', 't'}, '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
-vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables this in terminal
+vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables window managemennt in vim terminal
 vim.keymap.set('t', 'jj', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
-vim.keymap.set('n', ';', "'", { noremap = true }) --now ; accesses marks
-vim.keymap.set('n', "'", ";", { noremap = true }) --now ' accesses next f or t style search
-vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize
+vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize. ctr-w = to equalize
 vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing panes
 vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true }) --resizing panes
-vim.keymap.set('n', 'D', 'dd', { noremap = true }) --D also deletes empty lines
 vim.keymap.set('n', '<C-n>', ':tabn<CR>', { noremap = true }) --basic tab navigation if needed
 vim.keymap.set('n', '<C-t>', ':tabnew<CR>', { noremap = true }) --basic tab navigation if needed
-vim.keymap.set({'n', 'v'}, "H", "7h", {noremap = true, silent = true}) --start of line
-vim.keymap.set({'n', 'v'}, 'L', '7l', {noremap = true, silent = true}) --end of line
 vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
 vim.keymap.set('n', '*', '*zzz', { noremap = true, silent = true }) -- keeps word search in middle of page
-vim.keymap.set('v', '*', [[y/\V<C-R>"<CR>Nzzzv]], { noremap = true, silent = true }) -- puts visually selected text into search buffer
-vim.keymap.set('v', 'R', [[:s/\(.*\)/]], { noremap = true, silent = true }) --replace in a region, reference old text with \1
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
-vim.keymap.set('n', '<C-l>', 'mzJ|', { noremap = true, silent = true }) --append lower line behind current
 vim.keymap.set({"n", 'v'}, "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register, no character swaps but able to delete & retain yank register
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
-vim.keymap.set({"n", "v"}, "J", '10jzz', { noremap = true, silent = true }) --half page jumps
-vim.keymap.set({"n", "v"}, 'K', '10kzz', { noremap = true, silent = true }) --half page jumps
 vim.keymap.set( 'n', '<C-h>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
@@ -150,6 +139,8 @@ require('lazy').setup({
     'junegunn/fzf',
     'junegunn/fzf.vim',
   },
+
+  'tpope/vim-repeat',
 
 
   --DEFAULTS-----------------------------------
@@ -304,22 +295,9 @@ require('lazy').setup({
 
 }, {})
 
+
 --MY CONFIGS----------------------------------
-require'marks'.setup {
-  mappings = {
-    next_bookmark = ";;",
-    delete_bookmark = "dm",
-    set_bookmark0 = "ma",
-    set_bookmark1 = "ms",
-    set_bookmark2 = "md",
-    set_bookmark3 = "mf",
-    next_bookmark0 = ";a",
-    next_bookmark1 = ";s",
-    next_bookmark2 = ";d",
-    next_bookmark3 = ";f",
-    prev = false -- pass false to disable only this default mapping
-  }
-}
+require'marks'.setup {}
 
 --DEFAULT CONFIGS----------------------------------
 -- [[ Highlight on yank ]]
