@@ -55,8 +55,6 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true }) --easier termina
 vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize. ctr-w = to equalize
 vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing panes
 vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true }) --resizing panes
-vim.keymap.set('n', '<C-n>', ':tabn<CR>', { noremap = true }) --basic tab navigation if needed
-vim.keymap.set('n', '<C-t>', ':tabnew<CR>', { noremap = true }) --basic tab navigation if needed
 vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
 vim.keymap.set('n', '*', '*zzz', { noremap = true, silent = true }) -- keeps word search in middle of page
