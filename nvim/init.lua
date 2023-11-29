@@ -32,7 +32,6 @@ vim.o.smarttab = true
 vim.o.showcmd = true
 vim.o.title = true
 
-
 --Keybind Removals below
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set({ 'n', 'v'}, 'C-k', '<Nop>', {silent = true})
@@ -42,10 +41,9 @@ vim.keymap.set({ 'n', 'v'}, 'gn', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'gl', '<Nop>', {silent = true})
 vim.keymap.set({ 'n', 'v'}, 'U', '<Nop>', {silent = true})
 vim.keymap.set('n', '<C-h>', '<Nop>', {silent = true})
+vim.keymap.set('c', '<C-j>', '<Nop>', {silent = true})
 vim.keymap.set({'n', 't'}, '<C-w>]', '<Nop>', {silent = true})
 vim.keymap.set({'n', 't'}, '<C-w>[', '<Nop>', {silent = true})
-vim.keymap.set({'n', 't'}, '<C-n>', '<Nop>', {silent = true})
-vim.keymap.set({'n', 't'}, '<C-t>', '<Nop>', {silent = true})
 
 --NAV KEYBINDS 
 vim.keymap.set({'n', 'v', 't'}, '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
@@ -56,6 +54,8 @@ vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize. ct
 vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing panes
 vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true }) --resizing panes
 vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
+vim.keymap.set("n", "<C-u>", "<C-u>zz", {noremap = true, silent = true}) --keeps next in the middle of the page
+vim.keymap.set("n", "<C-d>", "<C-d>zz", {noremap = true, silent = true}) --keeps next in the middle of the page
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
 vim.keymap.set('n', '*', '*zzz', { noremap = true, silent = true }) -- keeps word search in middle of page
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
@@ -74,7 +74,7 @@ vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
 vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = '[N]ew buffer'})
 vim.keymap.set('n', '<leader>b', ':buffers<CR>', {desc = '[b]uffers'})
 vim.keymap.set('n', '<leader>B', ':bd<CR>', {desc = 'delete [B]uffer'})
-vim.keymap.set('n', '<leader>a', 'ggVG"+yg;', {desc = 'copy [a]ll to sys clipboard'})
+vim.keymap.set('n', '<leader>a', ':%y"+<CR>', {desc = 'copy [a]ll to sys clipboard'})
 vim.keymap.set('n', '<leader>o', 'q:', {desc = '[o]ld commands'})
 vim.keymap.set('n', '<leader>w', ':! g++ -g -std=c++14 -o %:r %<CR>', {desc = 'c++ compiler'})
 vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'}) --requires 'pip install mdpdf'
@@ -139,6 +139,18 @@ require('lazy').setup({
   },
 
   'tpope/vim-repeat',
+
+
+  -- DAP
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+      { "mfussenegger/nvim-dap" },
+      { "mfussenegger/nvim-dap-python" },
+      { "jay-babu/mason-nvim-dap.nvim" },
+      { "williamboman/mason.nvim" },
+    },
+  },
 
 
   --DEFAULTS-----------------------------------
@@ -374,6 +386,7 @@ local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
+  vim.keymap.set("n", "cd", vim.lsp.buf.rename, {desc = '[c]hange lsp [d]efinition', noremap = true, silent = true})
 }
 
 mason_lspconfig.setup_handlers {
