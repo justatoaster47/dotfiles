@@ -49,16 +49,16 @@ vim.keymap.set({'n', 't'}, '<C-w>]', '<Nop>', {silent = true})
 
 --NAV KEYBINDS 
 vim.keymap.set('n', '<C-h>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
-vim.keymap.set("n", "<C-d>", "<C-d>zz", {noremap = true, silent = true}) --keeps next in the middle of the page
-vim.keymap.set("n", "<C-u>", "<C-u>zz", {noremap = true, silent = true}) --keeps next in the middle of the page
-vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = '[Y]ank to clipboard'})
-vim.keymap.set("n", "<leader>p", '"+p', { desc = '[p] paste from clipboard' })
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = 'make e[x]ecutable'})
+vim.keymap.set("n", "<C-d>", "<C-d>zz", {noremap = true, silent = true}) --keeps half page jumps centered 
+vim.keymap.set("n", "<C-u>", "<C-u>zz", {noremap = true, silent = true})  --keeps half page jumps centered
+vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = '[Y]ank to clipboard'}) --yank to clipboard
+vim.keymap.set("n", "<leader>p", '"+p', { desc = '[p] paste from clipboard' }) --paste from clipboard
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = 'make e[x]ecutable'}) --make executable
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
 vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
-vim.keymap.set("v", "<leader>y", [["+y]], {desc = '[y]ank to clipboard'})
+vim.keymap.set("v", "<leader>y", [["+y]], {desc = '[y]ank to clipboard'}) --yank highlighted items to clipboard
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
 vim.keymap.set('n', '*', '*zzz', { noremap = true, silent = true }) -- keeps word search in middle of page
 vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize. ctr-w = to equalize
@@ -68,7 +68,7 @@ vim.keymap.set('n', '<leader>a', ':%y"+<CR>', {desc = 'copy [a]ll to sys clipboa
 vim.keymap.set('n', '<leader>b', ':buffers<CR>', {desc = '[b]uffers'})
 vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', {desc = 'copilot [d]isable'})
 vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', {desc = 'copilot [e]nable'})
-vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = '[e]xplore current directory'}) --exit to umbrella directory
+vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = '[e]xplore current directory'})
 vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd [h]ere'})
 vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
 vim.keymap.set('n', '<leader>o', 'q:', {desc = '[o]ld commands'})
@@ -86,6 +86,8 @@ vim.keymap.set({"n", 'v'}, "x", '"_x', {noremap = true, silent = true}) -- using
 vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true }) --resizing panes
 vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing panes
 vim.keymap.set({'n', 'v', 't'}, '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
+vim.keymap.set('c', '<C-j>', '<C-n>', { noremap = true, silent = true }) --scroll command suggestions
+vim.keymap.set('c', '<C-k>', '<C-p>', { noremap = true, silent = true }) --scroll command suggestions
 
 --Setting up terminal nav for vim splits
 vim.cmd[[
