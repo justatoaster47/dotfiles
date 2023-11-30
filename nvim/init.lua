@@ -3,86 +3,89 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 --Preferences
-vim.o.nu = true
-vim.o.relativenumber = true
-vim.o.number = true
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
-vim.o.shiftwidth = 2
-vim.o.expandtab = true
-vim.o.smartindent = true
-vim.o.wrap = false
-vim.o.swapfile = false
 vim.o.backup = false
-vim.o.undofile = true
-vim.o.hlsearch = false
-vim.o.incsearch = true
-vim.o.scrolloff = 8
-vim.o.mouse = 'a'
 vim.o.breakindent = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.wo.signcolumn = 'yes'
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
-vim.wo.number = true
+vim.o.expandtab = true
+vim.o.hlsearch = false
+vim.o.ignorecase = true
+vim.o.incsearch = true
+vim.o.mouse = 'a'
+vim.o.nu = true
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.scrolloff = 8
+vim.o.shiftwidth = 2
+vim.o.showcmd = true
+vim.o.smartcase = true
+vim.o.smartindent = true
 vim.o.smartindent = true
 vim.o.smarttab = true
-vim.o.showcmd = true
+vim.o.softtabstop = 2
+vim.o.swapfile = false
+vim.o.tabstop = 2
+vim.o.timeoutlen = 300
 vim.o.title = true
+vim.o.undofile = true
+vim.o.updatetime = 250
+vim.o.wildignorecase = true
+vim.o.wildmenu = true
+vim.o.wildmode = 'longest:full,full'
+vim.o.wrap = false
+vim.wo.number = true
+vim.wo.signcolumn = 'yes'
 
 --Keybind Removals below
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-vim.keymap.set({ 'n', 'v'}, 'C-k', '<Nop>', {silent = true})
-vim.keymap.set({ 'n', 'v'}, 's', '<Nop>', {silent = true})
-vim.keymap.set({ 'n', 'v'}, 'ss', '<Nop>', {silent = true})
-vim.keymap.set({ 'n', 'v'}, 'gn', '<Nop>', {silent = true})
-vim.keymap.set({ 'n', 'v'}, 'gl', '<Nop>', {silent = true})
-vim.keymap.set({ 'n', 'v'}, 'U', '<Nop>', {silent = true})
 vim.keymap.set('n', '<C-h>', '<Nop>', {silent = true})
-vim.keymap.set('c', '<C-j>', '<Nop>', {silent = true})
-vim.keymap.set({'n', 't'}, '<C-w>]', '<Nop>', {silent = true})
+vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set({'n', 'v'}, 'C-k', '<Nop>', {silent = true})
+vim.keymap.set({'n', 'v'}, 'U', '<Nop>', {silent = true})
+vim.keymap.set({'n', 'v'}, 'gl', '<Nop>', {silent = true})
+vim.keymap.set({'n', 'v'}, 'gn', '<Nop>', {silent = true})
+vim.keymap.set({'n', 'v'}, 's', '<Nop>', {silent = true})
+vim.keymap.set({'n', 'v'}, 'ss', '<Nop>', {silent = true})
 vim.keymap.set({'n', 't'}, '<C-w>[', '<Nop>', {silent = true})
+vim.keymap.set({'n', 't'}, '<C-w>]', '<Nop>', {silent = true})
 
 --NAV KEYBINDS 
-vim.keymap.set({'n', 'v', 't'}, '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
-vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables window managemennt in vim terminal
-vim.keymap.set('t', 'jj', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
-vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize. ctr-w = to equalize
-vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing panes
-vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true }) --resizing panes
-vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
-vim.keymap.set("n", "<C-u>", "<C-u>zz", {noremap = true, silent = true}) --keeps next in the middle of the page
+vim.keymap.set('n', '<C-h>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
 vim.keymap.set("n", "<C-d>", "<C-d>zz", {noremap = true, silent = true}) --keeps next in the middle of the page
+vim.keymap.set("n", "<C-u>", "<C-u>zz", {noremap = true, silent = true}) --keeps next in the middle of the page
+vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = '[Y]ank to clipboard'})
+vim.keymap.set("n", "<leader>p", '"+p', { desc = '[p] paste from clipboard' })
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = 'make e[x]ecutable'})
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
-vim.keymap.set('n', '*', '*zzz', { noremap = true, silent = true }) -- keeps word search in middle of page
-vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
-vim.keymap.set({"n", 'v'}, "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register, no character swaps but able to delete & retain yank register
-vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
-vim.keymap.set( 'n', '<C-h>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
+vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "<leader>y", [["+y]], {desc = '[y]ank to clipboard'})
-vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = '[Y]ank to clipboard'})
-vim.keymap.set("n", "<leader>p", '"+p', { desc = '[p] paste from clipboard' })
-vim.keymap.set("n", "<leader>P", '"0p', { desc = '[P]aste from last yank' })
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = 'make e[x]ecutable'})
-vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = '[e]xplore current directory'}) --exit to umbrella directory
-vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
-vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = '[N]ew buffer'})
-vim.keymap.set('n', '<leader>b', ':buffers<CR>', {desc = '[b]uffers'})
+vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
+vim.keymap.set('n', '*', '*zzz', { noremap = true, silent = true }) -- keeps word search in middle of page
+vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize. ctr-w = to equalize
 vim.keymap.set('n', '<leader>B', ':bd<CR>', {desc = 'delete [B]uffer'})
+vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = '[N]ew buffer'})
 vim.keymap.set('n', '<leader>a', ':%y"+<CR>', {desc = 'copy [a]ll to sys clipboard'})
+vim.keymap.set('n', '<leader>b', ':buffers<CR>', {desc = '[b]uffers'})
+vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', {desc = 'copilot [d]isable'})
+vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', {desc = 'copilot [e]nable'})
+vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = '[e]xplore current directory'}) --exit to umbrella directory
+vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd [h]ere'})
+vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
 vim.keymap.set('n', '<leader>o', 'q:', {desc = '[o]ld commands'})
+vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'})
 vim.keymap.set('n', '<leader>w', ':! g++ -g -std=c++14 -o %:r %<CR>', {desc = 'c++ compiler'})
-vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'}) --requires 'pip install mdpdf'
-vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd [h]ere'}) --requires 'pip install mdpdf'
-vim.keymap.set('n', 'sg', ':RG<CR>' ,{ desc = '[s]earch [g]rep' })
-vim.keymap.set('n', 'sf', ':Files<CR>' ,{ desc = '[s]earch [f]iles' })
+vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
 vim.keymap.set('n', 'sc', ':Commands<CR>' ,{ desc = '[s]earch [f]iles' })
-vim.keymap.set('n', 'so', ':History<CR>' ,{ desc = '[s]earch [f]iles' })
+vim.keymap.set('n', 'sf', ':Files<CR>' ,{ desc = '[s]earch [f]iles' })
+vim.keymap.set('n', 'sg', ':RG<CR>' ,{ desc = '[s]earch [g]rep' })
+vim.keymap.set('n', 'so', ':History<CR>' ,{ desc = '[s]earch old [f]iles' })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
+vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables window managemennt in vim terminal
+vim.keymap.set('t', 'jj', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
+vim.keymap.set({"n", 'v'}, "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register, no character swaps but able to delete & retain yank register
+vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true }) --resizing panes
+vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing panes
+vim.keymap.set({'n', 'v', 't'}, '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
 
 --Setting up terminal nav for vim splits
 vim.cmd[[
@@ -90,7 +93,7 @@ vim.cmd[[
   autocmd BufLeave * if &buftype == 'terminal' | setlocal bufhidden= | endif
 ]]
 
---plugin based but not dependent remaps
+--plugin based remaps
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
 vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = '[m]ason plugin manager'})
 vim.keymap.set('n', '<leader>l', ':Lazy check<CR>', { desc = '[l]azy package manager'})
@@ -140,6 +143,12 @@ require('lazy').setup({
 
   'tpope/vim-repeat',
 
+  {
+    --first time to validate do :Copilot setup
+    --:Copilot enable / disable as needed
+    'github/copilot.vim',
+    vim.keymap.set('i', '<C-L>', '<Plug>(copilot-accept-word)'),
+  },
 
   -- DAP
   {
@@ -309,6 +318,7 @@ require('lazy').setup({
 --MY CONFIGS----------------------------------
 require'marks'.setup {}
 
+
 --DEFAULT CONFIGS----------------------------------
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -386,7 +396,8 @@ local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
-  vim.keymap.set("n", "cd", vim.lsp.buf.rename, {desc = '[c]hange lsp [d]efinition', noremap = true, silent = true})
+  vim.keymap.set("n", "cd", vim.lsp.buf.rename, {desc = '[c]hange lsp [d]efinition', noremap = true, silent = true}),
+  vim.keymap.set("n", "<leader>H", vim.lsp.buf.hover , {desc = '[H]over definition', noremap = true, silent = true}),
 }
 
 mason_lspconfig.setup_handlers {
