@@ -38,10 +38,9 @@ vim.wo.signcolumn = 'yes'
 --Keybind Removals below
 vim.keymap.set('n', '<C-h>', '<Nop>', {silent = true})
 vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set({'n', 'v'}, 'C-j', '<Nop>', {silent = true})
 vim.keymap.set({'n', 'v'}, 'C-k', '<Nop>', {silent = true})
 vim.keymap.set({'n', 'v'}, 'U', '<Nop>', {silent = true})
-vim.keymap.set({'n', 'v'}, 'gl', '<Nop>', {silent = true})
-vim.keymap.set({'n', 'v'}, 'gn', '<Nop>', {silent = true})
 vim.keymap.set({'n', 'v'}, 's', '<Nop>', {silent = true})
 vim.keymap.set({'n', 'v'}, 'ss', '<Nop>', {silent = true})
 vim.keymap.set({'n', 't'}, '<C-w>[', '<Nop>', {silent = true})
@@ -66,8 +65,6 @@ vim.keymap.set('n', '<leader>B', ':bd<CR>', {desc = 'delete [B]uffer'})
 vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = '[N]ew buffer'})
 vim.keymap.set('n', '<leader>a', ':%y"+<CR>', {desc = 'copy [a]ll to sys clipboard'})
 vim.keymap.set('n', '<leader>b', ':buffers<CR>', {desc = '[b]uffers'})
-vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', {desc = 'copilot [d]isable'})
-vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', {desc = 'copilot [e]nable'})
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = '[e]xplore current directory'})
 vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd [h]ere'})
 vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
@@ -75,17 +72,13 @@ vim.keymap.set('n', '<leader>o', 'q:', {desc = '[o]ld commands'})
 vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'})
 vim.keymap.set('n', '<leader>w', ':! g++ -g -std=c++14 -o %:r %<CR>', {desc = 'c++ compiler'})
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
-vim.keymap.set('n', 'sc', ':Commands<CR>' ,{ desc = '[s]earch [f]iles' })
-vim.keymap.set('n', 'sf', ':Files<CR>' ,{ desc = '[s]earch [f]iles' })
-vim.keymap.set('n', 'sg', ':RG<CR>' ,{ desc = '[s]earch [g]rep' })
-vim.keymap.set('n', 'so', ':History<CR>' ,{ desc = '[s]earch old [f]iles' })
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
+vim.keymap.set('n', '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
 vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables window managemennt in vim terminal
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
 vim.keymap.set('t', 'jj', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
 vim.keymap.set({"n", 'v'}, "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register, no character swaps but able to delete & retain yank register
 vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true }) --resizing panes
 vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing panes
-vim.keymap.set({'n', 'v', 't'}, '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
 vim.keymap.set('c', '<C-j>', '<C-n>', { noremap = true, silent = true }) --scroll command suggestions
 vim.keymap.set('c', '<C-k>', '<C-p>', { noremap = true, silent = true }) --scroll command suggestions
 
@@ -99,6 +92,7 @@ vim.cmd[[
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
 vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = '[m]ason plugin manager'})
 vim.keymap.set('n', '<leader>l', ':Lazy check<CR>', { desc = '[l]azy package manager'})
+vim.g["sneak#label"] = true --label mode for vim-sneak
 
 
 -- Package Manager
@@ -141,15 +135,27 @@ require('lazy').setup({
     --fzf integration into vim for larger searches
     'junegunn/fzf',
     'junegunn/fzf.vim',
+    vim.keymap.set('n', 'sc', ':Commands<CR>' ,{ desc = '[s]earch [f]iles' }),
+    vim.keymap.set('n', 'sf', ':Files<CR>' ,{ desc = '[s]earch [f]iles' }),
+    vim.keymap.set('n', 'sg', ':RG<CR>' ,{ desc = '[s]earch [g]rep' }),
+    vim.keymap.set('n', 'so', ':History<CR>' ,{ desc = '[s]earch old [f]iles' }),
   },
 
   'tpope/vim-repeat',
+
+  {
+  'justinmk/vim-sneak',
+    vim.keymap.set('n', 'f', '<Plug>Sneak_s', { noremap = false }),
+    vim.keymap.set('n', 'F', '<Plug>Sneak_S', { noremap = false }),
+  },
 
   {
     --first time to validate do :Copilot setup
     --:Copilot enable / disable as needed
     'github/copilot.vim',
     vim.keymap.set('i', '<C-L>', '<Plug>(copilot-accept-word)'),
+    vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', {desc = 'copilot [d]isable'}),
+    vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', {desc = 'copilot [e]nable'}),
   },
 
   -- DAP
@@ -231,6 +237,9 @@ require('lazy').setup({
         changedelete = { text = '/' },
       },
       on_attach = function(bufnr)
+        vim.keymap.set({'n', 'v'}, 'gl', '<Nop>', {silent = true}) --unmaps
+        vim.keymap.set({'n', 'v'}, 'gn', '<Nop>', {silent = true}) --unmaps
+
         vim.keymap.set('n', 'gh', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[g]it [h]unk' })
 
         -- don't override the built-in and fugitive keymaps
