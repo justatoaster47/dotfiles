@@ -2,6 +2,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+
 --Preferences
 vim.o.backup = false
 vim.o.breakindent = true
