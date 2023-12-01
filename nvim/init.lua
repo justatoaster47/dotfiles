@@ -77,6 +77,7 @@ vim.keymap.set('n', '<leader>c', ':! g++ -g -std=c++14 -o %:r %<CR>', {desc = 'c
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
 vim.keymap.set('n', '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
 vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables window managemennt in vim terminal
+vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables window managemennt in vim terminal
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
 vim.keymap.set('t', 'jj', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
 vim.keymap.set({"n", 'v'}, "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register, no character swaps but able to delete & retain yank register
@@ -158,11 +159,11 @@ require('lazy').setup({
 
   {
     --first time to validate do :Copilot setup
-    --:Copilot enable / disable as needed
     'github/copilot.vim',
     vim.keymap.set('i', '<C-L>', '<Plug>(copilot-accept-word)'),
-    -- vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', {desc = 'copilot [d]isable'}),
-    -- vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', {desc = 'copilot [e]nable'}),
+    vim.keymap.set('n', '<leader>Cd', ':Copilot disable<CR>', {desc = 'copilot [d]isable'}),
+    vim.keymap.set('n', '<leader>Ce', ':Copilot enable<CR>', {desc = 'copilot [e]nable'}),
+    vim.keymap.set('n', '<leader>Cs', ':Copilot setup<CR>', {desc = 'copilot [s]etup'}),
   },
 
   -- DAP
@@ -177,7 +178,11 @@ require('lazy').setup({
   },
 
   --Notetaking
+  {
   'vimwiki/vimwiki',
+    vim.keymap.set({'n', 'v', 'i'}, '<Tab>n', '<Plug>VimwikiNextLink', {silent = true}), -- doesn't override nvim tab config
+    path = '~/Documents/vimwiki/',
+  },
 
 
   --DEFAULTS-----------------------------------
@@ -355,6 +360,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('telescope').setup {
   defaults = {},
 }
+
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
