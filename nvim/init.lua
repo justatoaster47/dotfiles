@@ -182,6 +182,9 @@ require('lazy').setup({
   'vimwiki/vimwiki',
     vim.keymap.set({'n', 'v', 'i'}, '<Tab>n', '<Plug>VimwikiNextLink', {silent = true}), -- doesn't override nvim tab config
     path = '~/Documents/vimwiki/',
+    filetypes = {'markdown'},
+    syntax = 'markdown',
+    ext = '.md',
   },
 
 
