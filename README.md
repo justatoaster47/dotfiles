@@ -16,8 +16,7 @@ Change shell to zsh ```chsh -s $(which zsh)```
 1. git
 2. tmux
 3. bat (homebrew, alternative to cat w. syntax highlighting)
-4. glow (markdown preview)
-5. still need a debugging setup
+4. still need a debugging setup
 
 
 
