@@ -180,7 +180,7 @@ require('lazy').setup({
   --Notetaking
   {
   'vimwiki/vimwiki',
-    vim.keymap.set({'n', 'v', 'i'}, '<Tab>n', '<Plug>VimwikiNextLink', {silent = true}), -- doesn't override nvim tab config
+    vim.keymap.set('n', '<Tab>n', '<Plug>VimwikiNextLink', {silent = true}), -- doesn't override nvim tab config
     path = '~/Documents/vimwiki/',
     filetypes = {'markdown'},
     syntax = 'markdown',
