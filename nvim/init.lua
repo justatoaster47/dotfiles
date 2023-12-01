@@ -2,7 +2,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-
 --Preferences
 vim.o.backup = false
 vim.o.breakindent = true
@@ -35,6 +34,9 @@ vim.o.wildmode = 'longest:full,full'
 vim.o.wrap = false
 vim.wo.number = true
 vim.wo.signcolumn = 'yes'
+vim.o.syntax = 'on' --for vimwiki
+vim.o.filetype = 'on' --for vimwiki
+vim.o.filetypeplugin = 'on' --for vimwiki
 
 --Keybind Removals below
 vim.keymap.set('n', '<C-h>', '<Nop>', {silent = true})
@@ -71,7 +73,7 @@ vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd [h]ere'})
 vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
 vim.keymap.set('n', '<leader>o', 'q:', {desc = '[o]ld commands'})
 vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'})
-vim.keymap.set('n', '<leader>w', ':! g++ -g -std=c++14 -o %:r %<CR>', {desc = 'c++ compiler'})
+vim.keymap.set('n', '<leader>c', ':! g++ -g -std=c++14 -o %:r %<CR>', {desc = 'c++ compiler'})
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
 vim.keymap.set('n', '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
 vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables window managemennt in vim terminal
@@ -159,8 +161,8 @@ require('lazy').setup({
     --:Copilot enable / disable as needed
     'github/copilot.vim',
     vim.keymap.set('i', '<C-L>', '<Plug>(copilot-accept-word)'),
-    vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', {desc = 'copilot [d]isable'}),
-    vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', {desc = 'copilot [e]nable'}),
+    -- vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', {desc = 'copilot [d]isable'}),
+    -- vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', {desc = 'copilot [e]nable'}),
   },
 
   -- DAP
@@ -173,6 +175,9 @@ require('lazy').setup({
       { "williamboman/mason.nvim" },
     },
   },
+
+  --Notetaking
+  'vimwiki/vimwiki',
 
 
   --DEFAULTS-----------------------------------
