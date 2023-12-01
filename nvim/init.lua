@@ -350,14 +350,12 @@ require('lazy').setup({
 require('marks').setup {}
 
 --fugitive keybinds for git
-vim.keymap.set('n', '<leader>gb', ':GBrowse<CR>', { desc = '[g]it [b]rowser' })
 vim.keymap.set('n', '<leader>gs', ':Git<CR><C-w>H<C-w>60<', { desc = '[g]it [s]tatus' })
-vim.keymap.set('n', '<leader>gq', ':Git status<CR>', { desc = '[g]it [q]uick stats' })
-vim.keymap.set('n', '<leader>gSs', ':Git stash<CR>', { desc = '[g]it [S]tash' })
-vim.keymap.set('n', '<leader>gSp', ':Git stash pop<CR>', { desc = '[g]it [S]tash' })
-vim.keymap.set('n', '<leader>gSl', ':Git stash list<CR>', { desc = '[g]it [S]tash' })
+vim.keymap.set('n', '<leader>gB', ':GBrowse<CR>', { desc = '[g]it [B]rowser' })
+vim.keymap.set('n', '<leader>gb', ':Git branch ', { desc = '[g]it [b]ranch [s]witch' })
+vim.keymap.set('n', '<leader>gS', ':Git stash ', { desc = '[g]it [S]tash' })
 vim.keymap.set('n', '<leader>gl', ':Git log<CR><C-w>H<C-w>20<', { desc = '[g]it [l]og' })
-vim.keymap.set('n', '<leader>gd', ':Gvdiff', { desc = '[g]it [d]iff (hash/branch needed)'})
+vim.keymap.set('n', '<leader>gd', ':Gvdiff ', { desc = '[g]it [d]iff (hash/branch needed)'})
 vim.keymap.set('n', '<leader>gk', ':G checkout ', { desc = '[g]it chec[k]out' })
 vim.keymap.set('n', '<leader>ga', ':Gwrite<CR>', { desc = '[g]it [a]dd file' })
 vim.keymap.set('n', '<leader>gR', ':Gread<CR>', { desc = '[g]it [R]eset file' })
@@ -365,7 +363,9 @@ vim.keymap.set('n', '<leader>gp', ':Git push', { desc = '[g]it [p]ush' })
 vim.keymap.set('n', '<leader>gcm', ":Git commit -m '", { desc = '[g]it [c]ommit [m]essage' })
 vim.keymap.set('n', '<leader>gcs', ':Git commit -m standard commit message', { desc = '[g]it [c]ommit [s]tandard' })
 vim.keymap.set('n', '<leader>gro', ':Git rebase origin/main<CR>', { desc = '[g]it [r]ebase [o]rigin/main' })
+vim.keymap.set('n', '<leader>grr', ':Git rebase ', { desc = '[g]it [r]ebase ' })
 vim.keymap.set('n', '<leader>gfo', ':Git fetch origin<CR>', { desc = '[g]it [f]etch [o]rigin' })
+vim.keymap.set('n', '<leader>gff', ':Git fetch ', { desc = '[g]it [f]etch' })
 
 
 --prefix labels
@@ -375,7 +375,6 @@ require('which-key').register {
   ['<leader>gr'] = { name = '[r]ebase', _ = 'which_key_ignore' },
   ['<leader>gf'] = { name = '[f]etch', _ = 'which_key_ignore' },
   ['gh'] = { name = '[h]unk', _ = 'which_key_ignore' },
-  ['<leader>gS'] = { name = '[S]tash', _ = 'which_key_ignore' },
   ['s'] = { name = '[s]earch', _ = 'which_key_ignore' },
   ['<leader>C'] = { name = '[C]opilot', _ = 'which_key_ignore' },
   ['<leader>w'] = { name = '[w]iki', _ = 'which_key_ignore' },
