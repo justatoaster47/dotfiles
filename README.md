@@ -13,11 +13,12 @@ Change shell to zsh ```chsh -s $(which zsh)```
 3. Alacritty
 
 ## Other Good Installs
-1. bat (homebrew, alternative to cat w. syntax highlighting)
-2. jqp (good JSON reader)
-3. tmux (multiple terminals)
-4. git (its git)
-5. gdb (debugging) [setup](https://sourceware.org/gdb/wiki/PermissionsDarwin#Create_a_certificate_in_the_System_Keychain)
+1. git
+2. tmux
+3. bat (homebrew, alternative to cat w. syntax highlighting)
+4. glow (markdown preview)
+5. still need a debugging setup
+
 
 
 ## Sometimes the OS doesn't support new neovim
