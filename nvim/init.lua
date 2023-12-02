@@ -75,7 +75,7 @@ vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
 vim.keymap.set('n', '<leader>o', 'q:', {desc = '[o]ld commands'})
 vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'})
 vim.keymap.set('n', '<leader>c', ':! g++ -g -std=c++14 -o %:r %<CR>', {desc = 'c++ compiler'})
-vim.keymap.set('n', '<leader>H', ':let @" = expand("%")', { noremap = true, silent = true, desc = 'copy path [H]ere'})
+vim.keymap.set('n', '<leader>L', ':let @" = expand("%")<CR>', { noremap = true, silent = true, desc = '[L]ink path'})
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
 vim.keymap.set('n', '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
 vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables window managemennt in vim terminal
@@ -95,7 +95,7 @@ vim.cmd[[
 ]]
 
 -- commonly used directories
-vim.keymap.set('n', '<leader>dn', ':cd ~/Documents/notes<CR>:e ./<CR>:pwd<CR>', {desc = '[n]otes'})
+vim.keymap.set('n', '<leader>dn', ':e ~/Documents/notes/index.md<CR>:pwd<CR>', {desc = '[n]otes'})
 vim.keymap.set('n', '<leader>dc', ':cd ~/Documents/code<CR>:e ./<CR>:pwd<CR>', {desc = '[c]ode'})
 vim.keymap.set('n', '<leader>dj', ":cd ~/Documents/notes/journal<CR>:e `date +\\%Y-\\%m-\\%d`.md<CR>:pwd<CR>", {desc = 'new [j]ournal'})
 
