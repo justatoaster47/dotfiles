@@ -92,9 +92,14 @@ vim.cmd[[
   autocmd BufLeave * if &buftype == 'terminal' | setlocal bufhidden= | endif
 ]]
 
+-- commonly used directories
+vim.keymap.set('n', '<leader>dn', ':e ~/Documents/vimwiki<CR>:pwd<CR>', {desc = '[n]otes'})
+vim.keymap.set('n', '<leader>dc', ':e ~/Documents/code<CR>:pwd<CR>', {desc = '[c]ode'})
+vim.keymap.set('n', '<leader>dh', ':e ~/Documents/code/400hw<CR>:pwd<CR>', {desc = '[h]omework'})
+
 --plugin based remaps
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
-vim.keymap.set('n', '<leader>m', ':Mason<CR>', { desc = '[m]ason plugin manager'})
+vim.keymap.set('n', '<leader>M', ':Mason<CR>', { desc = '[M]ason plugin manager'})
 vim.keymap.set('n', '<leader>l', ':Lazy check<CR>', { desc = '[l]azy package manager'})
 vim.g["sneak#label"] = true --label mode for vim-sneak
 
@@ -377,7 +382,7 @@ require('which-key').register {
   ['gh'] = { name = '[h]unk', _ = 'which_key_ignore' },
   ['s'] = { name = '[s]earch', _ = 'which_key_ignore' },
   ['<leader>C'] = { name = '[C]opilot', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[w]iki', _ = 'which_key_ignore' },
+  ['<leader>d'] = { name = '[d]irectories', _ = 'which_key_ignore' },
 }
 
 --DEFAULT CONFIGS----------------------------------
@@ -411,7 +416,7 @@ vim.keymap.set('n', 'sk', require('telescope.builtin').keymaps, { desc = '[s]ear
 vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, { desc = '[g]o to [d]efinition'})
 vim.keymap.set('n', 'ss', require('telescope.builtin').lsp_document_symbols, { desc = '[s]earch [s]ymbols'})
 vim.keymap.set('n', 'sm', require('telescope.builtin').marks, { desc = '[s]earch [m]arks'})
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'open [d]iagnostic message' })
+vim.keymap.set('n', '<leader>m', vim.diagnostic.open_float, { desc = 'open diagnostic [m]essage' })
 
 -- [[ Configure Treesitter ]]
 vim.defer_fn(function()
