@@ -201,6 +201,7 @@ require('lazy').setup({
     vim.keymap.set('n', '<leader>w<leader>t', '<Nop>', {noremap = true, silent = true}),
     vim.keymap.set('n', '<leader>w<leader>w', '<Nop>', {noremap = true, silent = true}),
     vim.keymap.set('n', '<leader>w<leader>y', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<Tab>n', '<Plug>VimwikiNextLink', {noremap = true, silent = true}),
     filetypes = {'markdown'},
     syntax = 'markdown',
     ext = '.md',
