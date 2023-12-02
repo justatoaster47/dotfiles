@@ -93,8 +93,8 @@ vim.cmd[[
 ]]
 
 -- commonly used directories
-vim.keymap.set('n', '<leader>dn', ':e ~/Documents/notes<CR>:pwd<CR>', {desc = '[n]otes'})
-vim.keymap.set('n', '<leader>dc', ':e ~/Documents/code<CR>:pwd<CR>', {desc = '[c]ode'})
+vim.keymap.set('n', '<leader>dn', ':cd ~/Documents/notes<CR>:e ./<CR>:pwd<CR>', {desc = '[n]otes'})
+vim.keymap.set('n', '<leader>dc', ':cd ~/Documents/code<CR>:e ./<CR>:pwd<CR>', {desc = '[c]ode'})
 
 --plugin based remaps
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
@@ -181,6 +181,27 @@ require('lazy').setup({
     },
   },
 
+  --Notetaking
+  {
+  'vimwiki/vimwiki',
+    --unmaps for only the leader key combos
+    vim.keymap.set('n', '<leader>wi', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<leader>ws', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<leader>wt', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<leader>ww', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<leader>wc', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<leader>wd', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<leader>wh', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<leader>ww', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<leader>w<leader>i', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<leader>w<leader>m', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<leader>w<leader>t', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<leader>w<leader>w', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<leader>w<leader>y', '<Nop>', {noremap = true, silent = true}),
+    filetypes = {'markdown'},
+    syntax = 'markdown',
+    ext = '.md',
+  },
 
 
   --DEFAULTS-----------------------------------
