@@ -93,9 +93,8 @@ vim.cmd[[
 ]]
 
 -- commonly used directories
-vim.keymap.set('n', '<leader>dn', ':e ~/Documents/vimwiki<CR>:pwd<CR>', {desc = '[n]otes'})
+vim.keymap.set('n', '<leader>dn', ':e ~/Documents/notes<CR>:pwd<CR>', {desc = '[n]otes'})
 vim.keymap.set('n', '<leader>dc', ':e ~/Documents/code<CR>:pwd<CR>', {desc = '[c]ode'})
-vim.keymap.set('n', '<leader>dh', ':e ~/Documents/code/400hw<CR>:pwd<CR>', {desc = '[h]omework'})
 
 --plugin based remaps
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
@@ -182,15 +181,6 @@ require('lazy').setup({
     },
   },
 
-  --Notetaking
-  {
-  'vimwiki/vimwiki',
-    vim.keymap.set('n', '<Tab>n', '<Plug>VimwikiNextLink', {silent = true}), -- doesn't override nvim tab config
-    path = '~/Documents/vimwiki/',
-    filetypes = {'markdown'},
-    syntax = 'markdown',
-    ext = '.md',
-  },
 
 
   --DEFAULTS-----------------------------------
