@@ -96,7 +96,8 @@ vim.cmd[[
 
 -- commonly used directories
 vim.keymap.set('n', '<leader>dn', ':e ~/Documents/notes/index.md<CR>:pwd<CR>', {desc = '[n]otes'})
-vim.keymap.set('n', '<leader>dc', ':cd ~/Documents/code<CR>:e ./<CR>:pwd<CR>', {desc = '[c]ode'})
+vim.keymap.set('n', '<leader>dc', ':e ~/Documents/code<CR>:pwd<CR>', {desc = '[c]ode'})
+vim.keymap.set('n', '<leader>di', ':e ~/.config/nvim/init.lua<CR>:pwd<CR>', {desc = '[i]nit.lua'})
 vim.keymap.set('n', '<leader>dj', ":cd ~/Documents/notes/journal<CR>:e `date +\\%Y-\\%m-\\%d`.md<CR>:pwd<CR>", {desc = 'new [j]ournal'})
 
 --plugin based remaps
