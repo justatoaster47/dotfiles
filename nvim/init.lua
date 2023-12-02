@@ -58,6 +58,7 @@ vim.keymap.set("n", "<leader>p", '"+p', { desc = '[p] paste from clipboard' }) -
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = 'make e[x]ecutable'}) --make executable
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
 vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
+vim.keymap.set("n", "g;", "g;zz", {noremap = true, silent = true}) --keeps middle of page
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "<leader>y", [["+y]], {desc = '[y]ank to clipboard'}) --yank highlighted items to clipboard
@@ -74,6 +75,7 @@ vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
 vim.keymap.set('n', '<leader>o', 'q:', {desc = '[o]ld commands'})
 vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'})
 vim.keymap.set('n', '<leader>c', ':! g++ -g -std=c++14 -o %:r %<CR>', {desc = 'c++ compiler'})
+vim.keymap.set('n', '<leader>H', ':let @" = expand("%")', { noremap = true, silent = true, desc = 'copy path [H]ere'})
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
 vim.keymap.set('n', '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
 vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables window managemennt in vim terminal
@@ -95,6 +97,7 @@ vim.cmd[[
 -- commonly used directories
 vim.keymap.set('n', '<leader>dn', ':cd ~/Documents/notes<CR>:e ./<CR>:pwd<CR>', {desc = '[n]otes'})
 vim.keymap.set('n', '<leader>dc', ':cd ~/Documents/code<CR>:e ./<CR>:pwd<CR>', {desc = '[c]ode'})
+vim.keymap.set('n', '<leader>dj', ":cd ~/Documents/notes/journal<CR>:e `date +\\%Y-\\%m-\\%d`.md<CR>:pwd<CR>", {desc = 'new [j]ournal'})
 
 --plugin based remaps
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
@@ -157,8 +160,8 @@ require('lazy').setup({
     vim.keymap.set('n', 'f', '<Plug>Sneak_s', { noremap = true }),
     vim.keymap.set('n', 'F', '<Plug>Sneak_S', { noremap = true }),
     --one character searches are 'til mode
-    -- vim.keymap.set('n', 't', '<Plug>Sneak_t', { noremap = true }),
-    -- vim.keymap.set('n', 'T', '<Plug>Sneak_T', { noremap = true }),
+    vim.keymap.set('n', 't', '<Plug>Sneak_t', { noremap = true }),
+    vim.keymap.set('n', 'T', '<Plug>Sneak_T', { noremap = true }),
   },
 
   {
