@@ -9,15 +9,16 @@
 !zsh/
 !alacritty/
 
-//ignore all on layer 2
+#ignore all on layer 2
 nvim/*
 tmux/*
 zsh/*
 alacritty/*
 
-//except these on layer 3
+#except these on layer 3
 !nvim/init.lua
 !tmux/tmux.conf
 !zsh/zshrc
 !alacritty/alacritty.yml
 
+nvim/lazy-lock.json
