@@ -87,6 +87,8 @@ vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true }) --resizing 
 vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing panes
 vim.keymap.set('c', '<C-j>', '<C-n>', { noremap = true, silent = true }) --scroll command suggestions
 vim.keymap.set('c', '<C-k>', '<C-p>', { noremap = true, silent = true }) --scroll command suggestions
+vim.keymap.set("n", "dis", "T.dt.x", {noremap = true, silent = true, desc = 'sentence'}) --delete in sentence 
+vim.keymap.set("n", "<leader>sm", ":echo 'type session name...'<CR>:mksession ~/Documents/code/vim_sessions/", {noremap = true, silent = true, desc = '[s]ession [m]ake'})
 
 --Setting up terminal nav for vim splits
 vim.cmd[[
@@ -95,10 +97,10 @@ vim.cmd[[
 ]]
 
 -- commonly used directories
-vim.keymap.set('n', '<leader>dn', ':e ~/Documents/notes/index.md<CR>:pwd<CR>', {desc = '[n]otes'})
+vim.keymap.set('n', '<leader>dn', ':e ~/Documents/notes/index.md<CR>:Copilot disable<CR>:pwd<CR>', {desc = '[n]otes'})
 vim.keymap.set('n', '<leader>dc', ':e ~/Documents/code<CR>:pwd<CR>', {desc = '[c]ode'})
 vim.keymap.set('n', '<leader>di', ':e ~/.config/nvim/init.lua<CR>:pwd<CR>', {desc = '[i]nit.lua'})
-vim.keymap.set('n', '<leader>dj', ":cd ~/Documents/notes/journal<CR>:e `date +\\%Y-\\%m-\\%d`.md<CR>:pwd<CR>", {desc = 'new [j]ournal'})
+vim.keymap.set('n', '<leader>dj', ":cd ~/Documents/notes/journal<CR>:e `date +\\%Y-\\%m-\\%d`.md<CR>:Copilot disable<CR>:pwd<CR>", {desc = 'new [j]ournal'})
 
 --plugin based remaps
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
@@ -208,6 +210,8 @@ require('lazy').setup({
     ext = '.md',
   },
 
+  --start page w. session selection 
+  { 'echasnovski/mini.nvim', version = '*' },
 
   --DEFAULTS-----------------------------------
   -- Git related plugins
@@ -400,6 +404,69 @@ require('which-key').register {
   ['<leader>C'] = { name = '[C]opilot', _ = 'which_key_ignore' },
   ['<leader>d'] = { name = '[d]irectories', _ = 'which_key_ignore' },
 }
+
+local header_art =
+[[
+       ,                                  
+       \\`-._           __                
+        \\\\  `-..____,.'  `.             
+         :`.         /    \\`.            
+         :  )       :      : \\           
+          ;'        '   ;  |  :           
+          )..      .. .:.`.;  :           
+         /::...  .:::...   ` ;            
+         ; _ '    __        /:\\          
+         `:o>   /\o_>      ;:. `.        
+        `-`.__ ;   __..--- /:.   \\       
+        === \\_/   ;=====_.':.     ;      
+         ,/'`--'...`--....        ;       
+              ;                    ;      
+            .'                      ;     
+          .'                        ;     
+        .'     ..     ,      .       ;    
+       :       ::..  /      ;::.     |    
+      /      `.;::.  |       ;:..    ;    
+     :         |:.   :       ;:.    ;     
+     :         ::     ;:..   |.    ;      
+      :       :;      :::....|     |      
+      /\\     ,/ \\      ;:::::;     ;    
+    .:. \\:..|    :     ; '.--|     ;     
+   ::.  :''  `-.,,;     ;'   ;     ;      
+.-'. _.'\\      / `;      \\,__:      \\  
+`---'    `----'   ;      /    \\,.,,,/    
+                   `----`                 
+  ___     ___    ___   __  __ /\_\    ___ ___    
+ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  
+/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ 
+\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\
+ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/
+]]
+
+-- using the mini plugins
+require('mini.sessions').setup({
+  -- Whether to read latest session if Neovim opened without file arguments
+  autoread = false,
+  -- Whether to write current session before quitting Neovim
+  autowrite = true,
+  -- Directory where global sessions are stored (use `''` to disable)
+  directory =  '~/Documents/code/vim_sessions/', --<"session" subdir of user data directory from |stdpath()|>,
+  -- File for local session (use `''` to disable)
+  file = '' -- 'Session.vim',
+})
+
+local starter = require('mini.starter')
+starter.setup({
+  -- evaluate_single = true,
+  items = {
+    starter.sections.sessions(77, true),
+  },
+  content_hooks = {
+    starter.gen_hook.adding_bullet("» "),
+    starter.gen_hook.aligning('center', 'center'),
+  },
+  header = header_art,
+  footer = '',
+})
 
 --DEFAULT CONFIGS----------------------------------
 -- [[ Highlight on yank ]]
