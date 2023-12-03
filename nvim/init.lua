@@ -210,7 +210,7 @@ require('lazy').setup({
   },
 
   --start page w. session selection 
-  { 'echasnovski/mini.nvim', version = '*' },
+  { 'echasnovski/mini.nvim', version = 'false' },
 
   --DEFAULTS-----------------------------------
   -- Git related plugins

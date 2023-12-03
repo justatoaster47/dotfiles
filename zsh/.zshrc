@@ -5,23 +5,9 @@
 export ZSH="/Users/alexpetro/.oh-my-zsh"
 export EDITOR=nvim
 
-
-
 ZSH_THEME='eastwood'
 
 touch .hushlogin
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 
 plugins=(git)
 
@@ -31,26 +17,7 @@ alias v="nvim"
 alias c="clear"
 alias x="exit"
 alias t="tmux" 
-# alias d="cd ~/Documents/code"
-# alias p="cat"
-# alias P="bat"
-# alias o="g++ -o" 
-# alias k="killall tmux"
-# alias rg="rg -in"
-
-# alias g="git"
-# alias ga="git add"
-# alias gc="git commit -m"
-# alias gcs="git commit -m 'standard commit statement'"
-# alias gb="git branch"
-# alias gk="git checkout"
-# alias gs="git status"
-# alias gp="git push"
-# alias gm="git merge"
-# alias gr="git rebase origin/main"
-# alias gf="git fetch origin"
-# alias gl="git log"
-
+alias k="killall tmux"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
