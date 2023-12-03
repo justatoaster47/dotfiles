@@ -1,0 +1,22 @@
+#ignore all 
+*
+
+!nvim/
+nvim/*
+!nvim/init.lua
+
+!README.md
+!.gitignore
+
+!tmux/
+tmux/*
+!tmux/tmux.conf
+
+!zsh/
+zsh/*
+!zsh/zshrc
+
+!alacritty/
+alacritty/*
+!alacritty/alacritty.yml
+
