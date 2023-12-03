@@ -15,8 +15,9 @@ Change shell to zsh ```chsh -s $(which zsh)```
 ## Other Good Installs
 1. git
 2. tmux
-3. bat (homebrew, alternative to cat w. syntax highlighting)
-4. still need a debugging setup
+3. bat (cat w. syntax hl)
+4. pandoc + basictex (md converter)
+5. still need a debugging setup
 
 
 ## Sometimes the OS doesn't support new neovim
