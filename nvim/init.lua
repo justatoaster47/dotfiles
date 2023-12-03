@@ -209,6 +209,7 @@ require('lazy').setup({
     ext = '.md',
   },
 
+
   --start page w. session selection 
   { 'echasnovski/mini.nvim', version = 'false' },
 

@@ -19,7 +19,6 @@ Change shell to zsh ```chsh -s $(which zsh)```
 4. still need a debugging setup
 
 
-
 ## Sometimes the OS doesn't support new neovim
 **this gets bare minimum nvim up and running**
 *using curl to install neovim*  

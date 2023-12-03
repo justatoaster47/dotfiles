@@ -1,0 +1,23 @@
+#ignore all
+*
+
+#except these on layer 1
+!README.md
+!.gitignore
+!nvim/
+!tmux/
+!zsh/
+!alacritty/
+
+//ignore all on layer 2
+nvim/*
+tmux/*
+zsh/*
+alacritty/*
+
+//except these on layer 3
+!nvim/init.lua
+!tmux/tmux.conf
+!zsh/zshrc
+!alacritty/alacritty.yml
+
