@@ -6,3 +6,4 @@ if test -f /Users/alexpetro/anaconda3/bin/conda
 end
 # <<< conda initialize <<<
 
+
