@@ -181,15 +181,6 @@ require('lazy').setup({
     vim.keymap.set('n', '<leader>Cs', ':Copilot setup<CR>', {desc = 'copilot [s]etup'}),
   },
 
-  -- DAP
-  {
-    "rcarriga/nvim-dap-ui",
-    dependencies = {
-      { "mfussenegger/nvim-dap" },
-      { "theHamsta/nvim-dap-virtual-text" },
-    },
-  },
-
   --Notetaking
   {
   'vimwiki/vimwiki',
@@ -217,7 +208,7 @@ require('lazy').setup({
 
 
   --start page w. session selection 
-  { 'echasnovski/mini.nvim', version = 'false' },
+  { 'echasnovski/mini.nvim', version = '*' },
 
   --DEFAULTS-----------------------------------
   -- Git related plugins
