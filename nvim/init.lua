@@ -88,7 +88,7 @@ vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing 
 vim.keymap.set('c', '<C-j>', '<C-n>', { noremap = true, silent = true }) --scroll command suggestions
 vim.keymap.set('c', '<C-k>', '<C-p>', { noremap = true, silent = true }) --scroll command suggestions
 vim.keymap.set("n", "dis", "T.dt.x", {noremap = true, silent = true, desc = 'sentence'}) --delete in sentence 
-vim.keymap.set("n", "<leader>sm", ":echo 'type session name...'<CR>:mksession ~/Documents/code/vim_sessions/", {noremap = true, silent = true, desc = '[s]ession [m]ake'})
+vim.keymap.set("n", "<leader>s", ":echo 'type session name...'<CR>:mksession ~/Documents/code/vim_sessions/", {noremap = true, silent = true, desc = 'make [s]ession '})
 
 --Setting up terminal nav for vim splits
 vim.cmd[[
@@ -99,13 +99,19 @@ vim.cmd[[
 -- commonly used directories
 vim.keymap.set('n', '<leader>dn', ':e ~/Documents/notes/index.md<CR>:Copilot disable<CR>:pwd<CR>', {desc = '[n]otes'})
 vim.keymap.set('n', '<leader>dc', ':e ~/Documents/code<CR>:pwd<CR>', {desc = '[c]ode'})
-vim.keymap.set('n', '<leader>dj', ":cd ~/Documents/notes/journal<CR>:e `date +\\%Y-\\%m-\\%d`.md<CR>:Copilot disable<CR>:pwd<CR>", {desc = 'new [j]ournal'})
+vim.keymap.set('n', '<leader>dj', ":cd ~/Documents/notes/journal<CR>:e `date +\\%Y_\\%m_\\%d`.md<CR>:Copilot disable<CR>:pwd<CR>", {desc = 'new [j]ournal'})
 
 --plugin based remaps
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
 vim.keymap.set('n', '<leader>M', ':Mason<CR>', { desc = '[M]ason plugin manager'})
 vim.keymap.set('n', '<leader>l', ':Lazy check<CR>', { desc = '[l]azy package manager'})
 vim.g["sneak#label"] = true --label mode for vim-sneak
+
+--pandoc w. basictex renders for markdown
+vim.keymap.set("n", "<leader>rp", ":!pandoc -V geometry:margin=1in % -o %:r.pdf<CR> :!mv %:r.pdf ~/Desktop<CR>:echo 'rendered!'<CR>", {noremap = true, silent = true, desc = '[r]ender md to pdf'})
+vim.keymap.set("n", "<leader>rd", ":!pandoc % -o %:r.docx<CR> :!mv %:r.docx ~/Desktop<CR>:echo 'rendered!'<CR>", {noremap = true, silent = true, desc = '[r]ender md to docx'})
+vim.keymap.set("n", "<leader>rh", ":!pandoc % -o %:r.html<CR> :!mv %:r.html ~/Desktop<CR>:echo 'rendered!'<CR>", {noremap = true, silent = true, desc = '[r]ender md to html'})
+vim.keymap.set("n", "<leader>rt", ":!pandoc % -o %:r.txt <CR> :!mv %:r.txt ~/Desktop<CR>:echo 'rendered!'<CR>", {noremap = true, silent = true, desc = '[r]ender md to txt'})
 
 
 -- Package Manager
@@ -197,6 +203,8 @@ require('lazy').setup({
     vim.keymap.set('n', '<leader>wc', '<Nop>', {noremap = true, silent = true}),
     vim.keymap.set('n', '<leader>wd', '<Nop>', {noremap = true, silent = true}),
     vim.keymap.set('n', '<leader>wh', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<leader>wn', '<Nop>', {noremap = true, silent = true}),
+    vim.keymap.set('n', '<leader>wr', '<Nop>', {noremap = true, silent = true}),
     vim.keymap.set('n', '<leader>ww', '<Nop>', {noremap = true, silent = true}),
     vim.keymap.set('n', '<leader>w<leader>i', '<Nop>', {noremap = true, silent = true}),
     vim.keymap.set('n', '<leader>w<leader>m', '<Nop>', {noremap = true, silent = true}),
@@ -403,6 +411,7 @@ require('which-key').register {
   ['s'] = { name = '[s]earch', _ = 'which_key_ignore' },
   ['<leader>C'] = { name = '[C]opilot', _ = 'which_key_ignore' },
   ['<leader>d'] = { name = '[d]irectories', _ = 'which_key_ignore' },
+  ['<leader>r'] = { name = '[r]ender md', _ = 'which_key_ignore' },
 }
 
 local header_art =
@@ -434,7 +443,7 @@ local header_art =
          ::.  :''  `-.,,;     ;'   ;     ;      
       .-'. _.'\\      / `;      \\,__:      \\  
       `---'    `----'   ;      /    \\,.,,,/    
-                     `----`      __           
+                     `----`     __           
    ___     ___    ___   __  __ /\_\    ___ ___    
   / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  
  /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ 
