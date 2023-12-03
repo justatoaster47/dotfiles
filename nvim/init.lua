@@ -383,7 +383,7 @@ require('marks').setup {}
 --fugitive keybinds for git
 vim.keymap.set('n', '<leader>gs', ':Git<CR><C-w>H<C-w>60<', { desc = '[g]it [s]tatus' })
 vim.keymap.set('n', '<leader>gB', ':GBrowse<CR>', { desc = '[g]it [B]rowser' })
-vim.keymap.set('n', '<leader>gb', ':Git branch ', { desc = '[g]it [b]ranch [s]witch' })
+vim.keymap.set('n', '<leader>gb', ':Git branch ', { desc = '[g]it [b]ranch ' })
 vim.keymap.set('n', '<leader>gS', ':Git stash ', { desc = '[g]it [S]tash' })
 vim.keymap.set('n', '<leader>gl', ':Git log<CR><C-w>H<C-w>20<', { desc = '[g]it [l]og' })
 vim.keymap.set('n', '<leader>gd', ':Gvdiff ', { desc = '[g]it [d]iff (hash/branch needed)'})
