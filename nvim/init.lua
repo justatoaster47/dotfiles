@@ -186,9 +186,7 @@ require('lazy').setup({
     "rcarriga/nvim-dap-ui",
     dependencies = {
       { "mfussenegger/nvim-dap" },
-      { "mfussenegger/nvim-dap-python" },
-      { "jay-babu/mason-nvim-dap.nvim" },
-      { "williamboman/mason.nvim" },
+      { "theHamsta/nvim-dap-virtual-text" },
     },
   },
 
