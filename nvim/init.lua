@@ -63,11 +63,11 @@ vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "<leader>y", [["+y]], {desc = '[y]ank to clipboard'}) --yank highlighted items to clipboard
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
-vim.keymap.set('n', '*', '*zzz', { noremap = true, silent = true }) -- keeps word search in middle of page
+vim.keymap.set('n', '*', '*zzzv', { noremap = true, silent = true }) -- keeps word search in middle of page
 vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize. ctr-w = to equalize
 vim.keymap.set('n', '<leader>B', ':bd<CR>', {desc = 'delete [B]uffer'})
 vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = '[N]ew buffer'})
-vim.keymap.set('n', '<leader>a', ':%y"+<CR>', {desc = 'copy [a]ll to sys clipboard'})
+vim.keymap.set('n', '<leader>a', ':%y+<CR>', {desc = 'copy [a]ll to sys clipboard'})
 vim.keymap.set('n', '<leader>b', ':buffers<CR>', {desc = '[b]uffers'})
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = '[e]xplore current directory'})
 vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd [h]ere'})
