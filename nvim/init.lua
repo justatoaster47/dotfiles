@@ -97,8 +97,8 @@ vim.cmd[[
 ]]
 
 -- commonly used directories
-vim.keymap.set('n', '<leader>dn', ':e ~/Documents/notes/index.md<CR>:Copilot disable<CR>:pwd<CR>', {desc = '[n]otes'})
-vim.keymap.set('n', '<leader>dc', ':e ~/Documents/code<CR>:pwd<CR>', {desc = '[c]ode'})
+vim.keymap.set('n', '<leader>dn', ':cd ~/Documents/notes<CR>:e index.md<CR>:Copilot disable<CR>:pwd<CR>', {desc = '[n]otes'})
+vim.keymap.set('n', '<leader>dc', ':cd ~/Documents/code<CR>:enew<CR>:pwd<CR>', {desc = '[c]ode'})
 vim.keymap.set('n', '<leader>dj', ":cd ~/Documents/notes/journal<CR>:e `date +\\%Y_\\%m_\\%d`.md<CR>:Copilot disable<CR>:pwd<CR>", {desc = 'new [j]ournal'})
 
 --plugin based remaps
@@ -466,6 +466,7 @@ starter.setup({
   footer = '',
 })
 
+
 --DEFAULT CONFIGS----------------------------------
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -481,7 +482,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('telescope').setup {
   defaults = {},
 }
-
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
