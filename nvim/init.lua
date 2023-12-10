@@ -185,6 +185,7 @@ require('lazy').setup({
   {
   'vimwiki/vimwiki',
     --unmaps for only the leader key combos
+    vim.keymap.set('n', '<leader>w', '<Nop>', {noremap = true, silent = true}),
     vim.keymap.set('n', '<leader>wi', '<Nop>', {noremap = true, silent = true}),
     vim.keymap.set('n', '<leader>ws', '<Nop>', {noremap = true, silent = true}),
     vim.keymap.set('n', '<leader>wt', '<Nop>', {noremap = true, silent = true}),
