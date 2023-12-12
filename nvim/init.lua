@@ -50,6 +50,8 @@ vim.keymap.set({'n', 't'}, '<C-w>[', '<Nop>', {silent = true})
 vim.keymap.set({'n', 't'}, '<C-w>]', '<Nop>', {silent = true})
 
 --STANDARD NAV KEYBINDS 
+vim.keymap.set('n', '<C-j>', '<C-o>', {noremap = true, silent = true}) -- jumplist back
+vim.keymap.set('n', '<C-k>', '<C-i>', {noremap = true, silent = true}) -- jumplist forward (before tab remap, tab==ctrl-i)
 vim.keymap.set('n', '<C-h>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
 vim.keymap.set("n", "<C-d>", "<C-d>zz", {noremap = true, silent = true}) --keeps half page jumps centered 
 vim.keymap.set("n", "<C-u>", "<C-u>zz", {noremap = true, silent = true})  --keeps half page jumps centered
