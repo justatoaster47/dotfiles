@@ -50,8 +50,8 @@ vim.keymap.set({'n', 't'}, '<C-w>[', '<Nop>', {silent = true})
 vim.keymap.set({'n', 't'}, '<C-w>]', '<Nop>', {silent = true})
 
 --STANDARD NAV KEYBINDS 
-vim.keymap.set('n', '<C-j>', '<C-o>', {noremap = true, silent = true}) -- jumplist back
-vim.keymap.set('n', '<C-k>', '<C-i>', {noremap = true, silent = true}) -- jumplist forward (before tab remap, tab==ctrl-i)
+-- vim.keymap.set('n', '<C-j>', '<C-o>zz', {noremap = true, silent = true}) -- jumplist back
+-- vim.keymap.set('n', '<C-k>', '<C-i>zz', {noremap = true, silent = true}) -- jumplist forward (before tab remap, tab==ctrl-i)
 vim.keymap.set('n', '<C-h>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
 vim.keymap.set("n", "<C-d>", "<C-d>zz", {noremap = true, silent = true}) --keeps half page jumps centered 
 vim.keymap.set("n", "<C-u>", "<C-u>zz", {noremap = true, silent = true})  --keeps half page jumps centered
@@ -98,6 +98,12 @@ vim.cmd[[
   autocmd BufLeave * if &buftype == 'terminal' | setlocal bufhidden= | endif
 ]]
 
+--sets text wrapping in markdown files for notetaking
+vim.cmd([[
+autocmd FileType markdown setlocal textwidth=97
+]])
+
+
 -- commonly used directories
 vim.keymap.set('n', '<leader>dn', ':cd ~/Documents/notes<CR>:e index.md<CR>:Copilot disable<CR>:pwd<CR>', {desc = '[n]otes'})
 vim.keymap.set('n', '<leader>dc', ':cd ~/Documents/code<CR>:enew<CR>:pwd<CR>', {desc = '[c]ode'})
@@ -133,6 +139,8 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 
   --MY ADDITIONS---------------------------------
+  auto_update = false,
+
   -- Undotree
   'mbbill/undotree',
 
