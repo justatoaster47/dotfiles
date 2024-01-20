@@ -110,6 +110,7 @@ autocmd FileType markdown setlocal textwidth=97
 --lldb ./executable
 --b filename:line or b function_name to set breakpoints
 --r to run, s to step, n to next, c to continue, p variable to print, bt to backtrace, q to quit
+--fr v to print all variables in frame
 
 -- commonly used directories
 vim.keymap.set('n', '<leader>dn', ':cd ~/Documents/notes<CR>:e index.md<CR>:Copilot disable<CR>:pwd<CR>', {desc = '[n]otes'})
