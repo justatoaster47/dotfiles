@@ -76,7 +76,9 @@ vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd [h]ere'})
 vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
 vim.keymap.set('n', '<leader>o', 'q:', {desc = '[o]ld commands'})
 vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'})
-vim.keymap.set('n', '<leader>c', ':! g++ -g -std=c++14 -o %:r %<CR>', {desc = 'c++ compiler'})
+vim.keymap.set('n', '<leader>c', ':! clang++ -std=c++14 -g -o %:r %<CR>', {desc = 'clang++ compile w. debug'})
+-- vim.keymap.set('n', '<leader>cg', ':! g++ -std=c++14 -o %:r %<CR>', {desc = 'g++ compile'})
+-- vim.keymap.set('n', '<leader>cc', ':! clang++ -std=c++14 -o %:r %<CR>', {desc = 'clang++ compile'})
 vim.keymap.set('n', '<leader>L', ':let @" = expand("%")<CR>', { noremap = true, silent = true, desc = '[L]ink path'})
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
 vim.keymap.set('n', '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
