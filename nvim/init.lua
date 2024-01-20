@@ -136,6 +136,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+--ALL PLUGINS ARE STORED / LOCATED at ~/.local/share/nvim/
+
 require('lazy').setup({
 
   --MY ADDITIONS---------------------------------
@@ -148,7 +150,7 @@ require('lazy').setup({
   'tpope/vim-surround',
 
   --show vim marks, set bookmarks (marks with 0-9), access via '
-  'chentoast/marks.nvim',
+  -- 'chentoast/marks.nvim',
 
   --preview substitutions
   'markonm/traces.vim',
@@ -380,7 +382,7 @@ require('lazy').setup({
 
 
 --MY CONFIGS----------------------------------
-require('marks').setup {}
+-- require('marks').setup {}
 
 --fugitive keybinds for git
 vim.keymap.set('n', '<leader>gs', ':Git<CR><C-w>H<C-w>60<', { desc = '[g]it [s]tatus' })
@@ -528,7 +530,7 @@ require('mason').setup()
 require('mason-lspconfig').setup()
 
 local servers = {
-  -- clangd = {},
+   clangd = {},
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
