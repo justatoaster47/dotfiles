@@ -76,6 +76,8 @@ vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd [h]ere'})
 vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = '[n]ext buffer'})
 vim.keymap.set('n', '<leader>o', 'q:', {desc = '[o]ld commands'})
 vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = '[t]erminal'})
+vim.keymap.set("n", "<leader>s", ":echo 'type session name...'<CR>:mksession ~/Documents/code/vim_sessions/", {noremap = true, silent = true, desc = 'make [s]ession '})
+vim.keymap.set("n", "<leader>D", ":cd %:p:h<CR>:pwd<CR> <C-w>v<C-w>l :term lldb %:r<CR>a ", {noremap = true, silent = true, desc = '[D]ebug'})
 vim.keymap.set('n', '<leader>c', ':! clang++ -std=c++14 -g -o %:r %<CR>', {desc = 'clang++ compile w. debug'})
 -- vim.keymap.set('n', '<leader>cg', ':! g++ -std=c++14 -o %:r %<CR>', {desc = 'g++ compile'})
 -- vim.keymap.set('n', '<leader>cc', ':! clang++ -std=c++14 -o %:r %<CR>', {desc = 'clang++ compile'})
@@ -92,7 +94,6 @@ vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing 
 vim.keymap.set('c', '<C-j>', '<C-n>', { noremap = true, silent = true }) --scroll command suggestions
 vim.keymap.set('c', '<C-k>', '<C-p>', { noremap = true, silent = true }) --scroll command suggestions
 vim.keymap.set("n", "dis", "T.dt.x", {noremap = true, silent = true, desc = 'sentence'}) --delete in sentence 
-vim.keymap.set("n", "<leader>s", ":echo 'type session name...'<CR>:mksession ~/Documents/code/vim_sessions/", {noremap = true, silent = true, desc = 'make [s]ession '})
 
 --Setting up terminal nav for vim splits
 vim.cmd[[
@@ -105,6 +106,10 @@ vim.cmd([[
 autocmd FileType markdown setlocal textwidth=97
 ]])
 
+--debugging with lldb:
+--lldb ./executable
+--b filename:line or b function_name to set breakpoints
+--r to run, s to step, n to next, c to continue, p variable to print, bt to backtrace, q to quit
 
 -- commonly used directories
 vim.keymap.set('n', '<leader>dn', ':cd ~/Documents/notes<CR>:e index.md<CR>:Copilot disable<CR>:pwd<CR>', {desc = '[n]otes'})
