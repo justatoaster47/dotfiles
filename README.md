@@ -11,14 +11,10 @@ Change shell to zsh ```chsh -s $(which zsh)```
 1. ZSH  
 2. oh-my-zsh  
 3. Alacritty
-
-## Other Good Installs
-1. git
-2. tmux
-3. bat (cat w. syntax hl)
 4. pandoc + basictex (md converter)
-5. still need a debugging setup
-
+5. lldb for debugging
+6. git obviously
+7. tmux if multiple terms needed
 
 ## Sometimes the OS doesn't support new neovim
 **this gets bare minimum nvim up and running**
