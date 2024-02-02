@@ -104,7 +104,7 @@ vim.cmd[[
 
 --sets text wrapping in markdown files for notetaking
 vim.cmd([[
-autocmd FileType markdown setlocal textwidth=97
+autocmd FileType markdown setlocal textwidth=90
 ]])
 
 --debugging with lldb:
@@ -175,7 +175,7 @@ require('lazy').setup({
     --fzf integration into vim for larger searches
     'junegunn/fzf',
     'junegunn/fzf.vim',
-    vim.keymap.set('n', 'sc', ':Commands<CR>' ,{ desc = '[s]earch [f]iles' }),
+    vim.keymap.set('n', 'sc', ':Commands<CR>' ,{ desc = '[s]earch [c]ommands' }),
     vim.keymap.set('n', 'sf', ':Files<CR>' ,{ desc = '[s]earch [f]iles' }),
     vim.keymap.set('n', 'sg', ':RG<CR>' ,{ desc = '[s]earch [g]rep' }),
     vim.keymap.set('n', 'so', ':History<CR>' ,{ desc = '[s]earch old [f]iles' }),
