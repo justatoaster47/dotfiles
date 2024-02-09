@@ -96,7 +96,7 @@ vim.keymap.set('c', '<C-k>', '<C-p>', { noremap = true, silent = true }) --scrol
 vim.keymap.set("v", "<leader>W", [[:s/\S\+//gn<CR>]], {noremap = true, silent = true, desc = 'Word count in selection'}) --
 vim.keymap.set("n", "<leader>W", [[:%s/\S\+//gn<CR>]], {noremap = true, silent = true, desc = 'Word count in file'}) --
 vim.keymap.set("n", "<leader>G", ":Gitsigns toggle_signs<CR>", {noremap = true, silent = true, desc = '[G]it toggle signs'}) --
-vim.keymap.set('n', '<leader>R', ':! clang++ -std=c++14 -o %:r %<CR><C-w>v<C-w>l :cd %:p:h<CR>:pwd<CR>:term ./%:r<CR>', {desc = 'compile & [R]un (C++)'})
+vim.keymap.set('n', '<leader>R', ':w<CR>:! clang++ -std=c++14 -o %:r %<CR><C-w>v<C-w>l :cd %:p:h<CR>:pwd<CR>:term ./%:r<CR>a', {desc = 'compile & [R]un (C++)'})
 
 --Setting up terminal nav for vim splits
 vim.cmd[[
