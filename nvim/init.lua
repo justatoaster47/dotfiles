@@ -96,6 +96,7 @@ vim.keymap.set('c', '<C-k>', '<C-p>', { noremap = true, silent = true }) --scrol
 vim.keymap.set("v", "<leader>W", [[:s/\S\+//gn<CR>]], {noremap = true, silent = true, desc = 'Word count in selection'}) --
 vim.keymap.set("n", "<leader>W", [[:%s/\S\+//gn<CR>]], {noremap = true, silent = true, desc = 'Word count in file'}) --
 vim.keymap.set("n", "<leader>G", ":Gitsigns toggle_signs<CR>", {noremap = true, silent = true, desc = '[G]it toggle signs'}) --
+vim.keymap.set('n', '<leader>R', ':! clang++ -std=c++14 -o %:r %<CR><C-w>v<C-w>l :cd %:p:h<CR>:pwd<CR>:term ./%:r<CR>', {desc = 'compile & [R]un (C++)'})
 
 --Setting up terminal nav for vim splits
 vim.cmd[[
@@ -411,6 +412,7 @@ vim.keymap.set('n', '<leader>gro', ':Git rebase origin/main<CR>', { desc = '[g]i
 vim.keymap.set('n', '<leader>grr', ':Git rebase ', { desc = '[g]it [r]ebase ' })
 vim.keymap.set('n', '<leader>gfo', ':Git fetch origin<CR>', { desc = '[g]it [f]etch [o]rigin' })
 vim.keymap.set('n', '<leader>gff', ':Git fetch ', { desc = '[g]it [f]etch' })
+vim.keymap.set('n', '<leader>gR', ':G revert ', { desc = '[g]it [R]evert (hash needed)' })
 
 
 --prefix labels
