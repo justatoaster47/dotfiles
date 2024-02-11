@@ -207,24 +207,15 @@ require('lazy').setup({
   --Notetaking
   {
   'vimwiki/vimwiki',
-    --unmaps for only the leader key combos
-    vim.keymap.set('n', '<leader>w', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>wi', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>ws', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>wt', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>ww', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>wc', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>wd', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>wh', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>wn', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>wr', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>ww', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>w<leader>i', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>w<leader>m', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>w<leader>t', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>w<leader>w', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<leader>w<leader>y', '<Nop>', {noremap = true, silent = true}),
-    vim.keymap.set('n', '<Tab>n', '<Plug>VimwikiNextLink', {noremap = true, silent = true}),
+
+    --disable mappings
+    init = function()
+      vim.g.vimwiki_key_mappings = {
+        all_maps = 0,
+        global = 0,
+      }
+    end,
+
     filetypes = {'markdown'},
     syntax = 'markdown',
     ext = '.md',
