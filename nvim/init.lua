@@ -66,8 +66,8 @@ vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true
 vim.keymap.set("v", "<leader>y", [["+y]], {desc = '[y]ank to clipboard'}) --yank highlighted items to clipboard
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
 vim.keymap.set('n', '*', '*zzzv', { noremap = true, silent = true }) -- keeps word search in middle of page
-vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize. ctr-w = to equalize
-vim.keymap.set('n', '<leader>B', ':bd<CR>', {desc = 'delete [B]uffer'})
+vim.keymap.set('n', '<Tab>f', '<C-w>_<C-w>|', { noremap = true }) --fullsize. tab = or ctrl-w = to equalize
+vim.keymap.set('n', '<leader>B', ':w<CR>:%bd!|e#|bd#<CR>', {desc = 'delete other [B]uffers'})
 vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = '[N]ew buffer'})
 vim.keymap.set('n', '<leader>a', ':%y+<CR>', {desc = 'copy [a]ll to sys clipboard'})
 vim.keymap.set('n', '<leader>b', ':buffers<CR>', {desc = '[b]uffers'})
@@ -119,6 +119,7 @@ autocmd FileType markdown setlocal textwidth=100
 vim.keymap.set('n', '<leader>dn', ':cd ~/Documents/notes<CR>:e index.md<CR>:Copilot disable<CR>:pwd<CR>', {desc = '[n]otes'})
 vim.keymap.set('n', '<leader>dc', ':cd ~/Documents/code<CR>:Ex<CR>:pwd<CR>', {desc = '[c]ode'})
 vim.keymap.set('n', '<leader>dj', ":cd ~/Documents/notes/journal<CR>:e `date +\\%Y_\\%m_\\%d`.md<CR>:Copilot disable<CR>:pwd<CR>", {desc = 'new [j]ournal'})
+vim.keymap.set('n', '<leader>di', ":e ~/.config/nvim/init.lua<CR>", {desc = '[i]nit.lua'})
 
 --plugin based remaps
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
@@ -224,6 +225,22 @@ require('lazy').setup({
 
   --start page w. session selection 
   { 'echasnovski/mini.nvim', version = '*' },
+
+
+  --harpoon
+  'ThePrimeagen/harpoon',
+
+  --for databases
+  'tpope/vim-dadbod',
+  'kristijanhusak/vim-dadbod-ui',
+  'kristijanhusak/vim-dadbod-completion',
+
+  --for jupyter notebooks
+  -- 'jupyter-vim/jupyter-vim',
+  'dccsillag/magma-nvim',
+
+
+
 
   --DEFAULTS-----------------------------------
   -- Git related plugins
@@ -403,8 +420,9 @@ vim.keymap.set('n', '<leader>gro', ':Git rebase origin/main<CR>', { desc = '[g]i
 vim.keymap.set('n', '<leader>grr', ':Git rebase ', { desc = '[g]it [r]ebase ' })
 vim.keymap.set('n', '<leader>gfo', ':Git fetch origin<CR>', { desc = '[g]it [f]etch [o]rigin' })
 vim.keymap.set('n', '<leader>gff', ':Git fetch ', { desc = '[g]it [f]etch' })
-vim.keymap.set('n', '<leader>gR', ':G revert ', { desc = '[g]it [R]evert (hash needed)' })
-
+vim.keymap.set('n', '<leader>gRh', ':Git reset --hard ', { desc = '[g]it [R]eset [h]ard (hash needed)' })
+vim.keymap.set('n', '<leader>gRs', ':Git checkout -- .<CR>', { desc = '[g]it [R]eset [s]taged'})
+vim.keymap.set('n', '<leader>gRf', ':Git restore ', { desc = '[g]it [R]eset staged [f]ile' })
 
 --prefix labels
 require('which-key').register {
@@ -412,6 +430,7 @@ require('which-key').register {
   ['<leader>gc'] = { name = '[c]ommit', _ = 'which_key_ignore' },
   ['<leader>gr'] = { name = '[r]ebase', _ = 'which_key_ignore' },
   ['<leader>gf'] = { name = '[f]etch', _ = 'which_key_ignore' },
+  ['<leader>gR'] = { name = '[R]esets', _ = 'which_key_ignore' },
   ['gh'] = { name = '[h]unk', _ = 'which_key_ignore' },
   ['s'] = { name = '[s]earch', _ = 'which_key_ignore' },
   ['<leader>C'] = { name = '[C]opilot', _ = 'which_key_ignore' },
@@ -482,6 +501,7 @@ starter.setup({
   footer = '',
 })
 
+require('harpoon').setup{}
 
 --DEFAULT CONFIGS----------------------------------
 -- [[ Highlight on yank ]]
@@ -518,7 +538,7 @@ vim.keymap.set('n', '<leader>m', vim.diagnostic.open_float, { desc = 'open diagn
 -- [[ Configure Treesitter ]]
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'sql'},
     auto_install = true,
     highlight = { enable = true },
     indent = { enable = true },
