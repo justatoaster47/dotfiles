@@ -41,8 +41,13 @@ vim.o.filetypeplugin = 'on' --for vimwiki
 --Keybind Removals below
 vim.keymap.set('n', '<C-h>', '<Nop>', {silent = true})
 vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', { silent = true })
-vim.keymap.set({'n', 'v'}, 'C-j', '<Nop>', {silent = true})
-vim.keymap.set({'n', 'v'}, 'C-k', '<Nop>', {silent = true})
+vim.keymap.set({'n', 'v'}, '<C-j>', '<Nop>', {silent = true})
+vim.keymap.set({'n', 'v'}, '<C-k>', '<Nop>', {silent = true})
+vim.keymap.set({'n', 'v'}, '<C-l>', '<Nop>', {silent = true})
+vim.keymap.set({'n', 'v'}, '<C-;>', '<Nop>', {silent = true})
+vim.keymap.set({'n', 'v'}, '<C-m>', '<Nop>', {silent = true})
+vim.keymap.set({'n', 'v'}, '<C-a>', '<Nop>', {silent = true})
+vim.keymap.set({'n', 'v'}, '<C-f>', '<Nop>', {silent = true})
 vim.keymap.set({'n', 'v'}, 'U', '<Nop>', {silent = true})
 vim.keymap.set({'n', 'v'}, 's', '<Nop>', {silent = true})
 vim.keymap.set({'n', 'v'}, 'ss', '<Nop>', {silent = true})
@@ -52,7 +57,7 @@ vim.keymap.set({'n', 't'}, '<C-w>]', '<Nop>', {silent = true})
 --STANDARD NAV KEYBINDS 
 -- vim.keymap.set('n', '<C-j>', '<C-o>zz', {noremap = true, silent = true}) -- jumplist back
 -- vim.keymap.set('n', '<C-k>', '<C-i>zz', {noremap = true, silent = true}) -- jumplist forward (before tab remap, tab==ctrl-i)
-vim.keymap.set('n', '<C-h>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
+vim.keymap.set('n', '<C-f>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
 vim.keymap.set("n", "<C-d>", "<C-d>zz", {noremap = true, silent = true}) --keeps half page jumps centered 
 vim.keymap.set("n", "<C-u>", "<C-u>zz", {noremap = true, silent = true})  --keeps half page jumps centered
 vim.keymap.set("n", "<leader>Y", [["+Y]], {desc = '[Y]ank to clipboard'}) --yank to clipboard
@@ -501,7 +506,15 @@ starter.setup({
   footer = '',
 })
 
-require('harpoon').setup{}
+require('harpoon').setup{
+  vim.keymap.set('n', '<leader>m', ':lua require("harpoon.ui").toggle_quick_menu()<CR>' , { desc = 'harpoon [m]enu' }),
+  vim.keymap.set('n', '<C-h>', require('harpoon.mark').add_file, { desc = '[h]arpoon file' }),
+  vim.keymap.set('n', '<C-j>', ':lua require("harpoon.ui").nav_file(1)<CR>' , { desc = '[h]arpoon 1' }),
+  vim.keymap.set('n', '<C-k>', ':lua require("harpoon.ui").nav_file(2)<CR>' , { desc = '[h]arpoon 2' }),
+  vim.keymap.set('n', '<C-l>', ':lua require("harpoon.ui").nav_file(3)<CR>' , { desc = '[h]arpoon 3' }),
+  vim.keymap.set('n', '<C-;>', ':lua require("harpoon.ui").nav_file(4)<CR>' , { desc = '[h]arpoon 4' }),
+
+}
 
 --DEFAULT CONFIGS----------------------------------
 -- [[ Highlight on yank ]]
@@ -533,7 +546,7 @@ vim.keymap.set('n', 'sk', require('telescope.builtin').keymaps, { desc = '[s]ear
 vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, { desc = '[g]o to [d]efinition'})
 vim.keymap.set('n', 'ss', require('telescope.builtin').lsp_document_symbols, { desc = '[s]earch [s]ymbols'})
 vim.keymap.set('n', 'sm', require('telescope.builtin').marks, { desc = '[s]earch [m]arks'})
-vim.keymap.set('n', '<leader>m', vim.diagnostic.open_float, { desc = 'open diagnostic [m]essage' })
+vim.keymap.set('n', '<leader>dd', vim.diagnostic.open_float, { desc = 'open [[d]]iagnostic message' })
 
 -- [[ Configure Treesitter ]]
 vim.defer_fn(function()
@@ -581,7 +594,7 @@ local mason_lspconfig = require 'mason-lspconfig'
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
   vim.keymap.set("n", "cd", vim.lsp.buf.rename, {desc = '[c]hange lsp [d]efinition', noremap = true, silent = true}),
-  vim.keymap.set("n", "<leader>H", vim.lsp.buf.hover , {desc = '[H]over definition', noremap = true, silent = true}),
+  vim.keymap.set("n", "<leader>hd", vim.lsp.buf.hover , {desc = '[h]over [d]efinition', noremap = true, silent = true}),
 }
 
 mason_lspconfig.setup_handlers {
