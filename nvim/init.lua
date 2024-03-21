@@ -54,6 +54,9 @@ vim.keymap.set({'n', 'v'}, 'ss', '<Nop>', {silent = true})
 vim.keymap.set({'n', 't'}, '<C-w>[', '<Nop>', {silent = true})
 vim.keymap.set({'n', 't'}, '<C-w>]', '<Nop>', {silent = true})
 
+-- remap for jumplist forward before any tab remaps, tab == C-i
+vim.keymap.set({'n'}, '<C-p>', '<C-i>', {noremap = true, silent = true})
+
 --STANDARD NAV KEYBINDS 
 -- vim.keymap.set('n', '<C-j>', '<C-o>zz', {noremap = true, silent = true}) -- jumplist back
 -- vim.keymap.set('n', '<C-k>', '<C-i>zz', {noremap = true, silent = true}) -- jumplist forward (before tab remap, tab==ctrl-i)
