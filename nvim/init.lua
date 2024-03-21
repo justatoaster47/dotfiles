@@ -594,7 +594,7 @@ local mason_lspconfig = require 'mason-lspconfig'
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
   vim.keymap.set("n", "cd", vim.lsp.buf.rename, {desc = '[c]hange lsp [d]efinition', noremap = true, silent = true}),
-  vim.keymap.set("n", "<leader>hd", vim.lsp.buf.hover , {desc = '[d]efinition [h]over', noremap = true, silent = true}),
+  vim.keymap.set("n", "<leader>dh", vim.lsp.buf.hover , {desc = '[d]efinition [h]over', noremap = true, silent = true}),
 }
 
 mason_lspconfig.setup_handlers {
