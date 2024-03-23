@@ -38,7 +38,9 @@ vim.o.syntax = 'on' --for vimwiki
 vim.o.filetype = 'on' --for vimwiki
 vim.o.filetypeplugin = 'on' --for vimwiki
 
---Keybind Removals below
+vim.g["sneak#label"] = true --label mode for vim-sneak
+
+--Keybind Removals 
 vim.keymap.set('n', '<C-h>', '<Nop>', {silent = true})
 vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set({'n', 'v'}, '<C-j>', '<Nop>', {silent = true})
@@ -57,39 +59,31 @@ vim.keymap.set({'n', 't'}, '<C-w>]', '<Nop>', {silent = true})
 -- remap for jumplist forward before any tab remaps, tab == C-i
 vim.keymap.set({'n'}, '<C-p>', '<C-i>', {noremap = true, silent = true})
 
---STANDARD NAV KEYBINDS 
+--nav keybinds
 vim.keymap.set("n", "<C-d>", "<C-d>zz", {noremap = true, silent = true}) --keeps half page jumps centered 
 vim.keymap.set("n", "<C-u>", "<C-u>zz", {noremap = true, silent = true})  --keeps half page jumps centered
 vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next in the middgle of the page 
 vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
 vim.keymap.set("n", "g;", "g;zz", {noremap = true, silent = true}) --keeps middle of page
 vim.keymap.set('n', '*', '*zzzv', { noremap = true, silent = true }) -- keeps word search in middle of page
-
 vim.keymap.set('n', '<C-f>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
+vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
+vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "Y", [["+Y]], {desc = 'Yank to clipboard'}) --yank to clipboard
 vim.keymap.set("n", "P", '"+p', { desc = 'paste from clipboard' }) --paste from clipboard
 vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { silent = true, desc = 'make executable'}) --make executable
-vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
-vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
-
-vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = 'New buffer'})
-vim.keymap.set('n', '<leader>a', ':%y+<CR>', {desc = 'copy all to sys clipboard'})
-
-vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = 'explore current directory'})
-vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd here'})
-vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = 'next buffer'})
-
--- vim.keymap.set('n', '<leader>o', 'q:', {desc = 'old commands'})
-vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = 'terminal'})
-vim.keymap.set("n", "<leader>s", ":echo 'type session name...'<CR>:mksession ~/Documents/code/vim_sessions/", {noremap = true, silent = true, desc = 'make session '})
-vim.keymap.set("n", "<leader>D", ":w<CR>:! clang++ -std=c++14 -g -o %:r %<CR>:cd %:p:h<CR>:pwd<CR> <C-w>v<C-w>l :term lldb %:r<CR>a ", {noremap = true, silent = true, desc = 'Debug'})
-vim.keymap.set('n', '<leader>c', ':! clang++ -std=c++14 -g -o %:r %<CR>', {desc = 'clang++ compile w. debug'})
--- vim.keymap.set('n', '<leader>cg', ':! g++ -std=c++14 -o %:r %<CR>', {desc = 'g++ compile'})
--- vim.keymap.set('n', '<leader>cc', ':! clang++ -std=c++14 -o %:r %<CR>', {desc = 'clang++ compile'})
-vim.keymap.set('n', '<leader>L', ':let @" = expand("%")<CR>', { noremap = true, silent = true, desc = 'get path to current file'})
+vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = 'New buffer'}) --new buffer
+vim.keymap.set('n', '<leader>a', ':%y+<CR>', {desc = 'copy all to sys clipboard'}) --copy all to system clipboard
+vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = 'explore current directory'}) --explore current directory
+vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd here'}) --cd to current file directory
+vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = 'next buffer'}) --next buffer
+vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = 'terminal'}) --terminal
+vim.keymap.set("n", "<leader>s", ":echo 'type session name...'<CR>:mksession ~/Documents/code/vim_sessions/", {noremap = true, silent = true, desc = 'make session '}) --make session
+vim.keymap.set("n", "<leader>D", ":w<CR>:! clang++ -std=c++14 -g -o %:r %<CR>:cd %:p:h<CR>:pwd<CR> <C-w>v<C-w>l :term lldb %:r<CR>a ", {noremap = true, silent = true, desc = 'Debug'}) --debugging
+vim.keymap.set('n', '<leader>c', ':! clang++ -std=c++14 -g -o %:r %<CR>', {desc = 'clang++ compile w. debug'}) -- c++ compile w clang
+vim.keymap.set('n', '<leader>L', ':let @" = expand("%")<CR>', { noremap = true, silent = true, desc = 'get path to current file'}) --get path to current file
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
-
 vim.keymap.set('n', '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
 vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables window managemennt in vim terminal
 vim.keymap.set('t', '<C-w>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables window managemennt in vim terminal
@@ -98,54 +92,55 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true }) --easier termina
 vim.keymap.set('t', 'jj', '<C-\\><C-n>', { noremap = true }) --easier terminal escapes
 vim.keymap.set({'n', 't'}, '<Tab>[', '<C-w>20<', { noremap = true }) --resizing panes
 vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing panes
-
 vim.keymap.set({"n", 'v'}, "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register
 vim.keymap.set('c', '<C-j>', '<C-n>', { noremap = true, silent = true }) --scroll command suggestions
 vim.keymap.set('c', '<C-k>', '<C-p>', { noremap = true, silent = true }) --scroll command suggestions
-
 vim.keymap.set("v", "<leader>w", [[:s/\S\+//gn<CR>]], {noremap = true, silent = true, desc = 'word count in selection'}) --
 vim.keymap.set("n", "<leader>w", [[:%s/\S\+//gn<CR>]], {noremap = true, silent = true, desc = 'word count in file'}) --
 vim.keymap.set('n', '<leader>R', ':w<CR>:! clang++ -std=c++14 -o %:r %<CR><C-w>v<C-w>l :cd %:p:h<CR>:pwd<CR>:term ./%:r<CR>a', {desc = 'compile & Run (C++)'})
+vim.keymap.set('n', '<leader>dn', ':cd ~/Documents/notes<CR>:e index.md<CR>:Copilot disable<CR>:pwd<CR>', {desc = 'notes'}) -- go to notes directory
+vim.keymap.set('n', '<leader>dc', ':cd ~/Documents/code<CR>:Ex<CR>:pwd<CR>', {desc = 'code'}) -- go to code directory
+vim.keymap.set('n', '<leader>dj', ":cd ~/Documents/notes/journal<CR>:e `date +\\%Y_\\%m_\\%d`.md<CR>:Copilot disable<CR>:pwd<CR>", {desc = 'new journal'}) -- new journal entry
+vim.keymap.set('n', '<leader>di', ":e ~/.config/nvim/init.lua<CR>", {desc = 'init.lua'}) -- edit init.lua
+vim.keymap.set('n', '<leader>dd', ":cd ~/Desktop<CR> :enew<CR>", {desc = 'desktop'}) -- go to desktop
+vim.keymap.set('n', '<leader>b', ":DBUIToggle<CR>", {desc = 'database ui'}) --toggle database ui
+vim.keymap.set('n', '<leader>M', ':Mason<CR>', { desc = 'Mason lsp'}) --mason lsp menu
+vim.keymap.set('n', '<leader>l', ':Lazy check<CR>', { desc = 'lazy package manager'}) --lazy package manager / lsp
+vim.keymap.set("n", "<leader>rp", ":!pandoc -V geometry:margin=1in % -o %:r.pdf<CR> :!mv %:r.pdf ~/Desktop<CR>:echo 'rendered!'<CR>", {noremap = true, silent = true, desc = 'render md to pdf'}) --pandoc renders
+vim.keymap.set("n", "<leader>rd", ":!pandoc % -o %:r.docx<CR> :!mv %:r.docx ~/Desktop<CR>:echo 'rendered!'<CR>", {noremap = true, silent = true, desc = 'render md to docx'}) --pandoc renders
+vim.keymap.set("n", "<leader>rh", ":!pandoc % -o %:r.html<CR> :!mv %:r.html ~/Desktop<CR>:echo 'rendered!'<CR>", {noremap = true, silent = true, desc = 'render md to html'}) --pandoc renders
+vim.keymap.set("n", "<leader>rt", ":!pandoc % -o %:r.txt <CR> :!mv %:r.txt ~/Desktop<CR>:echo 'rendered!'<CR>", {noremap = true, silent = true, desc = 'render md to txt'}) --pandoc renders
+vim.keymap.set('n', '<leader>gs', ':Git<CR><C-w>H<C-w>60<', { desc = 'git status' }) --git status
+vim.keymap.set('n', '<leader>gB', ':GBrowse<CR>', { desc = 'git Browser' }) --git browser
+vim.keymap.set('n', '<leader>gb', ':Git branch ', { desc = 'git branch ' }) --git branch
+vim.keymap.set('n', '<leader>gS', ':Git stash ', { desc = 'git Stash' }) --git stash
+vim.keymap.set('n', '<leader>gl', ':Git log<CR><C-w>H<C-w>20<', { desc = 'git log' }) --git log
+vim.keymap.set('n', '<leader>gd', ':Gvdiff ', { desc = 'git diff (hash/branch needed)'}) --git diff
+vim.keymap.set('n', '<leader>gk', ':G checkout ', { desc = 'git checkout' }) --git checkout
+vim.keymap.set('n', '<leader>ga', ':Gwrite<CR>', { desc = 'git add file' }) --git add file
+vim.keymap.set('n', '<leader>gR', ':Gread<CR>', { desc = 'git Reset file' }) --git reset file
+vim.keymap.set('n', '<leader>gp', ':Git push<CR>', { desc = 'git push' }) --git push
+vim.keymap.set('n', '<leader>gcm', ":Git commit -m '", { desc = 'git commit message' }) --git commit message
+vim.keymap.set('n', '<leader>gcs', ":Git commit -m 'standard commit message'<CR>", { desc = 'git commit standard' }) --git commit standard
+vim.keymap.set('n', '<leader>gro', ':Git rebase origin/main<CR>', { desc = 'git rebase origin/main' }) --git rebase origin/main
+vim.keymap.set('n', '<leader>grr', ':Git rebase ', { desc = 'git rebase ' }) --git rebase
+vim.keymap.set('n', '<leader>gfo', ':Git fetch origin<CR>', { desc = 'git fetch o]rigin' }) --git fetch origin
+vim.keymap.set('n', '<leader>gff', ':Git fetch ', { desc = 'git fetch' }) --git fetch
+vim.keymap.set('n', '<leader>gRh', ':Git reset --hard ', { desc = 'git Reset hard (hash needed)' }) --git reset hard
+vim.keymap.set('n', '<leader>gRs', ':Git checkout -- .<CR>', { desc = 'git Reset staged'}) --git reset staged
+vim.keymap.set('n', '<leader>gRf', ':Git restore ', { desc = 'git Reset staged file' }) --git restore file
+vim.keymap.set("n", "<leader>gt", ":Gitsigns toggle_signs<CR>", {noremap = true, silent = true, desc = 'git toggle signs'}) -- git toggle signs
 
---Setting up terminal nav for vim splits
+--Setting up terminal navigation within vim splits
 vim.cmd[[
   autocmd BufEnter * if &buftype == 'terminal' | setlocal bufhidden= nobuflisted nolist nonumber norelativenumber | startinsert | endif
   autocmd BufLeave * if &buftype == 'terminal' | setlocal bufhidden= | endif
 ]]
 
---sets text wrapping in markdown files for notetaking
+--sets text wrapping in markdown files
 vim.cmd([[
 autocmd FileType markdown setlocal textwidth=96
 ]])
-
---debugging with lldb:
---lldb ./executable
---b filename:line or b function_name to set breakpoints
---r to run, s to step in, n to step over, c to continue, bt to backtrace, q to quit, p to print
---v to print all local var's, display var to print var every stop, 
-
--- commonly used directories
-vim.keymap.set('n', '<leader>dn', ':cd ~/Documents/notes<CR>:e index.md<CR>:Copilot disable<CR>:pwd<CR>', {desc = 'notes'})
-vim.keymap.set('n', '<leader>dc', ':cd ~/Documents/code<CR>:Ex<CR>:pwd<CR>', {desc = 'code'})
-vim.keymap.set('n', '<leader>dj', ":cd ~/Documents/notes/journal<CR>:e `date +\\%Y_\\%m_\\%d`.md<CR>:Copilot disable<CR>:pwd<CR>", {desc = 'new journal'})
-vim.keymap.set('n', '<leader>di', ":e ~/.config/nvim/init.lua<CR>", {desc = 'init.lua'})
-vim.keymap.set('n', '<leader>dd', ":cd ~/Desktop<CR> :enew<CR>", {desc = 'desktop'})
-
-
---plugin based remaps
-vim.keymap.set('n', '<leader>b', ":DBUIToggle<CR>", {desc = 'database ui'})
--- vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = 'undotree', noremap = true, silent = true }) --toggle undotree
-vim.keymap.set('n', '<leader>M', ':Mason<CR>', { desc = 'Mason plugin manager'})
-vim.keymap.set('n', '<leader>l', ':Lazy check<CR>', { desc = 'lazy package manager'})
-
-vim.g["sneak#label"] = true --label mode for vim-sneak
-
---pandoc w. basictex renders for markdown
-vim.keymap.set("n", "<leader>rp", ":!pandoc -V geometry:margin=1in % -o %:r.pdf<CR> :!mv %:r.pdf ~/Desktop<CR>:echo 'rendered!'<CR>", {noremap = true, silent = true, desc = 'render md to pdf'})
-vim.keymap.set("n", "<leader>rd", ":!pandoc % -o %:r.docx<CR> :!mv %:r.docx ~/Desktop<CR>:echo 'rendered!'<CR>", {noremap = true, silent = true, desc = 'render md to docx'})
-vim.keymap.set("n", "<leader>rh", ":!pandoc % -o %:r.html<CR> :!mv %:r.html ~/Desktop<CR>:echo 'rendered!'<CR>", {noremap = true, silent = true, desc = 'render md to html'})
-vim.keymap.set("n", "<leader>rt", ":!pandoc % -o %:r.txt <CR> :!mv %:r.txt ~/Desktop<CR>:echo 'rendered!'<CR>", {noremap = true, silent = true, desc = 'render md to txt'})
-
 
 -- Package Manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -168,14 +163,8 @@ require('lazy').setup({
   --MY ADDITIONS---------------------------------
   auto_update = false,
 
-  -- Undotree
-  'mbbill/undotree',
-
   --Editing enclosing characters
   'tpope/vim-surround',
-
-  --show vim marks, set bookmarks (marks with 0-9), access via '
-  -- 'chentoast/marks.nvim',
 
   --preview substitutions
   'markonm/traces.vim',
@@ -218,7 +207,7 @@ require('lazy').setup({
     vim.keymap.set('n', '<leader>Cs', ':Copilot setup<CR>', {desc = 'copilot setup'}),
   },
 
-  --Notetaking
+  --markdown highlights
   {
   'vimwiki/vimwiki',
 
@@ -235,10 +224,8 @@ require('lazy').setup({
     ext = '.md',
   },
 
-
   --start page w. session selection 
   { 'echasnovski/mini.nvim', version = '*' },
-
 
   --harpoon
   'ThePrimeagen/harpoon',
@@ -248,9 +235,6 @@ require('lazy').setup({
   'kristijanhusak/vim-dadbod-ui',
   'kristijanhusak/vim-dadbod-completion',
 
-  --for jupyter notebooks
-  -- 'jupyter-vim/jupyter-vim',
-  -- 'dccsillag/magma-nvim',
 
 
 
@@ -414,29 +398,6 @@ require('lazy').setup({
 
 
 --MY CONFIGS----------------------------------
--- require('marks').setup {}
-
---fugitive keybinds for git
-vim.keymap.set('n', '<leader>gs', ':Git<CR><C-w>H<C-w>60<', { desc = 'git status' })
-vim.keymap.set('n', '<leader>gB', ':GBrowse<CR>', { desc = 'git Browser' })
-vim.keymap.set('n', '<leader>gb', ':Git branch ', { desc = 'git branch ' })
-vim.keymap.set('n', '<leader>gS', ':Git stash ', { desc = 'git Stash' })
-vim.keymap.set('n', '<leader>gl', ':Git log<CR><C-w>H<C-w>20<', { desc = 'git log' })
-vim.keymap.set('n', '<leader>gd', ':Gvdiff ', { desc = 'git diff (hash/branch needed)'})
-vim.keymap.set('n', '<leader>gk', ':G checkout ', { desc = 'git checkout' })
-vim.keymap.set('n', '<leader>ga', ':Gwrite<CR>', { desc = 'git add file' })
-vim.keymap.set('n', '<leader>gR', ':Gread<CR>', { desc = 'git Reset file' })
-vim.keymap.set('n', '<leader>gp', ':Git push<CR>', { desc = 'git push' })
-vim.keymap.set('n', '<leader>gcm', ":Git commit -m '", { desc = 'git commit message' })
-vim.keymap.set('n', '<leader>gcs', ":Git commit -m 'standard commit message'<CR>", { desc = 'git commit standard' })
-vim.keymap.set('n', '<leader>gro', ':Git rebase origin/main<CR>', { desc = 'git rebase origin/main' })
-vim.keymap.set('n', '<leader>grr', ':Git rebase ', { desc = 'git rebase ' })
-vim.keymap.set('n', '<leader>gfo', ':Git fetch origin<CR>', { desc = 'git fetch o]rigin' })
-vim.keymap.set('n', '<leader>gff', ':Git fetch ', { desc = 'git fetch' })
-vim.keymap.set('n', '<leader>gRh', ':Git reset --hard ', { desc = 'git Reset hard (hash needed)' })
-vim.keymap.set('n', '<leader>gRs', ':Git checkout -- .<CR>', { desc = 'git Reset staged'})
-vim.keymap.set('n', '<leader>gRf', ':Git restore ', { desc = 'git Reset staged file' })
-vim.keymap.set("n", "<leader>gt", ":Gitsigns toggle_signs<CR>", {noremap = true, silent = true, desc = 'git toggle signs'}) --
 
 --prefix labels
 require('which-key').register {
@@ -614,8 +575,7 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
--- [[ Configure nvim-cmp ]]
--- See `:help cmp`
+--  Configure nvim-cmp 
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
