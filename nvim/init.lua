@@ -71,18 +71,7 @@ vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "Y", [["+Y]], {desc = 'Yank to clipboard'}) --yank to clipboard
 vim.keymap.set("n", "P", '"+p', { desc = 'paste from clipboard' }) --paste from clipboard
-vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { silent = true, desc = 'make executable'}) --make executable
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true }) --faster escapes
-vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = 'New buffer'}) --new buffer
-vim.keymap.set('n', '<leader>a', ':%y+<CR>', {desc = 'copy all to sys clipboard'}) --copy all to system clipboard
-vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = 'explore current directory'}) --explore current directory
-vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd here'}) --cd to current file directory
-vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = 'next buffer'}) --next buffer
-vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = 'terminal'}) --terminal
-vim.keymap.set("n", "<leader>s", ":echo 'type session name...'<CR>:mksession ~/Documents/code/vim_sessions/", {noremap = true, silent = true, desc = 'make session '}) --make session
-vim.keymap.set("n", "<leader>D", ":w<CR>:! clang++ -std=c++14 -g -o %:r %<CR>:cd %:p:h<CR>:pwd<CR> <C-w>v<C-w>l :term lldb %:r<CR>a ", {noremap = true, silent = true, desc = 'Debug'}) --debugging
-vim.keymap.set('n', '<leader>c', ':! clang++ -std=c++14 -g -o %:r %<CR>', {desc = 'clang++ compile w. debug'}) -- c++ compile w clang
-vim.keymap.set('n', '<leader>L', ':let @" = expand("%")<CR>', { noremap = true, silent = true, desc = 'get path to current file'}) --get path to current file
 vim.keymap.set('n', 'U', '<C-r>', { noremap = true, silent = true }) --redo mapped to U
 vim.keymap.set('n', '<Tab>', '<C-w>', { noremap = true }) --enables window management by tab
 vim.keymap.set('t', '<Tab>', '<C-\\><C-n><C-w>', { noremap = true }) -- enables window managemennt in vim terminal
@@ -95,6 +84,17 @@ vim.keymap.set({'n', 't'}, '<Tab>]', '<C-w>20>', { noremap = true }) --resizing 
 vim.keymap.set({"n", 'v'}, "x", '"_x', {noremap = true, silent = true}) -- using x deletes into abyss register
 vim.keymap.set('c', '<C-j>', '<C-n>', { noremap = true, silent = true }) --scroll command suggestions
 vim.keymap.set('c', '<C-k>', '<C-p>', { noremap = true, silent = true }) --scroll command suggestions
+vim.keymap.set("n", "<leader>x", ":!chmod +x %<CR>", { silent = true, desc = 'make executable'}) --make executable
+vim.keymap.set('n', '<leader>N', ':enew<CR>', {desc = 'New buffer'}) --new buffer
+vim.keymap.set('n', '<leader>a', ':%y+<CR>', {desc = 'copy all to sys clipboard'}) --copy all to system clipboard
+vim.keymap.set('n', '<leader>e', ':Ex<CR>', {desc = 'explore current directory'}) --explore current directory
+vim.keymap.set('n', '<leader>h', ':cd %:p:h<CR>:pwd<CR>', {desc = 'cd here'}) --cd to current file directory
+vim.keymap.set('n', '<leader>n', ':bn<CR>', {desc = 'next buffer'}) --next buffer
+vim.keymap.set('n', '<leader>t', ':cd %:p:h<CR>:pwd<CR>:term<CR>a', {desc = 'terminal'}) --terminal
+vim.keymap.set("n", "<leader>s", ":echo 'type session name...'<CR>:mksession ~/Documents/code/vim_sessions/", {noremap = true, silent = true, desc = 'make session '}) --make session
+vim.keymap.set("n", "<leader>D", ":w<CR>:! clang++ -std=c++14 -g -o %:r %<CR>:cd %:p:h<CR>:pwd<CR> <C-w>v<C-w>l :term lldb %:r<CR>a ", {noremap = true, silent = true, desc = 'Debug'}) --debugging
+vim.keymap.set('n', '<leader>c', ':! clang++ -std=c++14 -g -o %:r %<CR>', {desc = 'clang++ compile w. debug'}) -- c++ compile w clang
+vim.keymap.set('n', '<leader>L', ':let @" = expand("%")<CR>', { noremap = true, silent = true, desc = 'get path to current file'}) --get path to current file
 vim.keymap.set("v", "<leader>w", [[:s/\S\+//gn<CR>]], {noremap = true, silent = true, desc = 'word count in selection'}) --
 vim.keymap.set("n", "<leader>w", [[:%s/\S\+//gn<CR>]], {noremap = true, silent = true, desc = 'word count in file'}) --
 vim.keymap.set('n', '<leader>R', ':w<CR>:! clang++ -std=c++14 -o %:r %<CR><C-w>v<C-w>l :cd %:p:h<CR>:pwd<CR>:term ./%:r<CR>a', {desc = 'compile & Run (C++)'})
@@ -234,9 +234,6 @@ require('lazy').setup({
   'tpope/vim-dadbod',
   'kristijanhusak/vim-dadbod-ui',
   'kristijanhusak/vim-dadbod-completion',
-
-
-
 
 
   --DEFAULTS-----------------------------------
