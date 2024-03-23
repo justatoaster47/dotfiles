@@ -114,7 +114,7 @@ vim.cmd[[
 
 --sets text wrapping in markdown files for notetaking
 vim.cmd([[
-autocmd FileType markdown setlocal textwidth=100
+autocmd FileType markdown setlocal textwidth=96
 ]])
 
 --debugging with lldb:
@@ -128,6 +128,8 @@ vim.keymap.set('n', '<leader>dn', ':cd ~/Documents/notes<CR>:e index.md<CR>:Copi
 vim.keymap.set('n', '<leader>dc', ':cd ~/Documents/code<CR>:Ex<CR>:pwd<CR>', {desc = '[c]ode'})
 vim.keymap.set('n', '<leader>dj', ":cd ~/Documents/notes/journal<CR>:e `date +\\%Y_\\%m_\\%d`.md<CR>:Copilot disable<CR>:pwd<CR>", {desc = 'new [j]ournal'})
 vim.keymap.set('n', '<leader>di', ":e ~/.config/nvim/init.lua<CR>", {desc = '[i]nit.lua'})
+
+vim.keymap.set('n', '<leader>db', ":DBUIToggle<CR>", {desc = '[d]ata[b]ase ui'})
 
 --plugin based remaps
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>', { desc = '[u]ndotree', noremap = true, silent = true }) --toggle undotree
