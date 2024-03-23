@@ -478,7 +478,7 @@ starter.setup({
 
 require('harpoon').setup{
   vim.keymap.set('n', '<C-h>', ':lua require("harpoon.ui").toggle_quick_menu()<CR>' , { desc = 'harpoon' }),
-  vim.keymap.set('n', '<C-m>', ':lua require("harpoon.mark").add_file', { desc = 'harpoon mark' }),
+  vim.keymap.set('n', '<C-m>', require("harpoon.mark").add_file, { desc = 'harpoon mark' }),
   vim.keymap.set('n', '<C-j>', ':lua require("harpoon.ui").nav_file(1)<CR>' , { desc = 'harpoon 1' }),
   vim.keymap.set('n', '<C-k>', ':lua require("harpoon.ui").nav_file(2)<CR>' , { desc = 'harpoon 2' }),
   vim.keymap.set('n', '<C-l>', ':lua require("harpoon.ui").nav_file(3)<CR>' , { desc = 'harpoon 3' }),
