@@ -98,6 +98,7 @@ vim.keymap.set('n', '<leader>L', ':let @" = expand("%")<CR>', { noremap = true, 
 vim.keymap.set("v", "<leader>w", [[:s/\S\+//gn<CR>]], {noremap = true, silent = true, desc = 'word count in selection'}) --
 vim.keymap.set("n", "<leader>w", [[:%s/\S\+//gn<CR>]], {noremap = true, silent = true, desc = 'word count in file'}) --
 vim.keymap.set('n', '<leader>R', ':w<CR>:! clang++ -std=c++14 -o %:r %<CR><C-w>v<C-w>l :cd %:p:h<CR>:pwd<CR>:term ./%:r<CR>a', {desc = 'compile & Run (C++)'})
+vim.keymap.set('n', '<leader>B', '<C-w>v<C-w>l :cd ~/Documents/code <CR> :pwd<CR>:term psql -d postgres<CR>a\\l<CR>\\c ', {desc = 'database CLI'})
 vim.keymap.set('n', '<leader>dn', ':cd ~/Documents/notes<CR>:e index.md<CR>:Copilot disable<CR>:pwd<CR>', {desc = 'notes'}) -- go to notes directory
 vim.keymap.set('n', '<leader>dc', ':cd ~/Documents/code<CR>:Ex<CR>:pwd<CR>', {desc = 'code'}) -- go to code directory
 vim.keymap.set('n', '<leader>dj', ":cd ~/Documents/notes/journal<CR>:e `date +\\%Y_\\%m_\\%d`.md<CR>:Copilot disable<CR>:pwd<CR>", {desc = 'new journal'}) -- new journal entry
