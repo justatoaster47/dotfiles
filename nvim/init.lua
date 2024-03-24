@@ -66,7 +66,7 @@ vim.keymap.set("n", "N", "Nzzzv", {noremap = true, silent = true}) --keeps next 
 vim.keymap.set("n", "n", "nzzzv", {noremap = true, silent = true}) --keeps next in the middle of the page
 vim.keymap.set("n", "g;", "g;zz", {noremap = true, silent = true}) --keeps middle of page
 vim.keymap.set('n', '*', '*zzzv', { noremap = true, silent = true }) -- keeps word search in middle of page
-vim.keymap.set('n', '<C-f>', 'vaBozz0', {noremap = true, silent = true}) --visually selects an entire function/class
+vim.keymap.set('n', '<C-f>', 'vaB$ozz0', {noremap = true, silent = true}) --visually selects an entire function/class
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true }) --move highlighted lines 
 vim.keymap.set("v", "Y", [["+Y]], {desc = 'Yank to clipboard'}) --yank to clipboard
